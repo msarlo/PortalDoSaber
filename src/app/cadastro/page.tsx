@@ -1,5 +1,6 @@
 'use client';
-
+import{Header} from '@/components/Header';
+import{LinkButton} from '@/components/LinkButton';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
@@ -47,6 +48,17 @@ export default function CadastroPage() {
     };
     
     return (
+    <>
+          <Header
+          children={
+                  <nav className="flex gap-6 items-center">
+                    <LinkButton 
+                      href="/"
+                      label="HOME"
+                    />
+                  </nav>
+                }
+          />
         <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">  
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <h2 className="text-center text-3xl font-extrabold text-gray-900">
@@ -149,6 +161,7 @@ export default function CadastroPage() {
       </div>
     
     </div>
+    </>
   );
 }
 
