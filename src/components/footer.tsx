@@ -1,15 +1,25 @@
-export const Footer = () => {
-    return (
-        <footer className="w-full bg-blue- py-6 mt-auto">
-            <div className="container mx-auto px-4 text-center text-white">
-                <p className="text-sm">
-                    &copy; Prefeitura de Juiz de Fora
-                    <br />
-                    Av. Brasil, 2001 | Centro - Juiz de Fora/MG - CEP: 36060-010
-                    <br />
-                    Todos os direitos reservados. Copyright &copy; {new Date().getFullYear()} - Site versão 1.0
-                </p>
+// src/components/layouts/Footer.tsx
+import React from 'react';
+import Link from 'next/link';
+
+export function Footer() {
+  return (
+    <footer className="bg-gray-800 text-white py-8 px-4">
+        <div className="container mx-auto">
+          <div className="flex flex-col md:flex-row justify-between">
+            <div className="mb-6 md:mb-0">
+              <h4 className="text-lg font-semibold mb-2">Capacitação PJF</h4>
+              <p className="text-gray-400">Plataforma de capacitação contínua para servidores públicos municipais</p>
             </div>
-        </footer>
-    )
+            <div>
+              <h4 className="text-lg font-semibold mb-2">Contato</h4>
+              <p className="text-gray-400">suporte.capacitacao@pjf.mg.gov.br</p>
+            </div>
+          </div>
+          <div className="mt-8 pt-6 border-t border-gray-700 text-gray-400 text-sm text-center">
+            © {new Date().getFullYear()} Prefeitura de Juiz de Fora. Todos os direitos reservados.
+          </div>
+        </div>
+      </footer>
+  );
 }
