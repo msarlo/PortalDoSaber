@@ -4,11 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { LinkButton } from '@/components/LinkButton';
 
-type Props = {
-  children?: React.ReactNode;
-};
-
-export function Header({children}: Props) {
+export function Header() {
   return (
     <header className="bg-blue-700 text-white p-4 sticky top-0 z-10">
       <div className="container mx-auto flex justify-between items-center">
@@ -26,7 +22,22 @@ export function Header({children}: Props) {
           </Link>
         </div>
 
-        {children}
+        {/* Navigation */}
+        <nav className="flex gap-6 items-center">
+          <LinkButton 
+            href="/cursos"
+            label="Cursos"
+          />
+          <LinkButton
+           
+            href="/cadastro"
+            label="Cadastro"
+          />
+          <LinkButton 
+            href="/login"
+            label="Login"
+          />
+        </nav>
       </div>
     </header>
   );
