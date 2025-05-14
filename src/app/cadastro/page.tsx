@@ -4,7 +4,7 @@ import{LinkButton} from '@/components/LinkButton';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-
+// Testando commit pull request
 export default function CadastroPage() {
     const router = useRouter();
     const [formData, setFormData] = useState({
