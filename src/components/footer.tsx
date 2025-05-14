@@ -1,6 +1,4 @@
-// src/components/layouts/Footer.tsx
 import React from 'react';
-import Link from 'next/link';
 
 export function Footer() {
   return (
