@@ -4,6 +4,7 @@ import{LinkButton} from '@/components/LinkButton';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
+// Testando
 
 export default function CadastroPage() {
     const router = useRouter();
