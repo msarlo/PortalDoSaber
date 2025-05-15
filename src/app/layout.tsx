@@ -1,5 +1,4 @@
-import{Header} from "@/components/Header";
-import{Footer} from "@/components/Footer";
+import { Footer } from "@/components/Footer";
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -9,7 +8,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="pt-br">
       <body
       >
         {children}
