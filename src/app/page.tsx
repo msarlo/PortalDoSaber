@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { Header } from '@/components/Header';
 import { LinkButton } from '@/components/LinkButton';
 
+// Testando commit pull request
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-gray-50">
