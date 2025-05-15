@@ -36,7 +36,7 @@ export default function HomePage() {
       <section className="container mx-auto py-12 px-4">
         <div className="grid md:grid-cols-2 gap-8">
           {/* Login Form */}
-          <div className="bg-white p-8 rounded-lg shadow-md">
+          <div className="bg-gradient-to-br from-blue-400 to-white p-8 rounded-lg shadow-md">
             <h2 className="text-2xl font-bold mb-6 text-gray-800">Login</h2>
             <form className="space-y-4">
               <div>
@@ -74,11 +74,11 @@ export default function HomePage() {
           </div>
 
           {/* Main Courses Section */}
-          <div className="bg-white p-8 rounded-lg shadow-md">
-            <h2 className="text-2xl font-bold mb-6 text-gray-800">Principais Cursos</h2>
+          <div className="bg-gradient-to-br from-blue-400 to-white p-8 rounded-lg shadow-md">
+            <h2 className="text-2xl font-bold mb-6 text-blue-800">Principais Cursos</h2>
             <div className="space-y-4">
               {mainCourses.map((course, index) => (
-                <div key={index} className="p-4 border rounded hover:bg-gray-50 transition-colors">
+                <div key={index} className="p-4 border rounded hover:bg-gray-50 transition-colors cursor-pointer">
                   <h3 className="font-semibold text-lg text-gray-800">{course.title}</h3>
                   <p className="text-gray-600">{course.description}</p>
                 </div>
