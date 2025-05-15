@@ -1,4 +1,4 @@
-import { Footer } from "@/components/Footer";
+import Footer from "@/components/Footer";
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -9,8 +9,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br">
-      <body
-      >
+      <body>
         {children}
         <Footer />
       </body>

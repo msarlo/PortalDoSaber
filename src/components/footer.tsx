@@ -2,7 +2,7 @@
 import React from 'react';
 import Link from 'next/link';
 
-export function Footer() {
+export default function Footer() {
   return (
     <footer className="bg-blue-700 text-white py-8 px-4">
         <div className="container mx-auto">
