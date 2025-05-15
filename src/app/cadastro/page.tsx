@@ -1,5 +1,5 @@
 'use client';
-import { Header } from '../../components/Header';
+import { Header } from '@/components/Header';
 import { LinkButton } from '@/components/LinkButton';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
