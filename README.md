@@ -1,6 +1,6 @@
 # Portal Saber
 
-Portal web desenvolvido para a Prefeitura de Juiz de Fora. teste
+Portal web desenvolvido para a Prefeitura de Juiz de Fora.
 
 ## Tecnologias Utilizadas
 
