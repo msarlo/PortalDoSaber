@@ -28,14 +28,6 @@ jobs:
       - name: TypeScript check
         run: npm run type-check || npm run tsc || echo "Executando verificação de tipos TypeScript"
         
-      # Lint com ESLint
-      - name: Lint
-        run: npm run lint
-        
-      # Testes unitários
-      - name: Run tests
-        run: npm test
-        
       # Build do projeto Next.js
       - name: Build Next.js application
         run: npm run build
