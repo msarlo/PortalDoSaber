@@ -15,7 +15,7 @@ export default function LoginPage() {
              </Header>
             <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
             <div className="sm:mx-auto sm:w-full sm:max-w-md">
-                <h2 className="text-center text-3xl font-extrabold text-black">
+                <h2 className="text-center text-3xl font-extrabold text-gray-900">
                 Acesse sua conta
                 </h2>
             </div>
@@ -23,7 +23,7 @@ export default function LoginPage() {
                 <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
                 <form className="space-y-6" action="/api/login" method="POST">
                     <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-black">
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-900">
                         Email
                     </label>
                     <input
@@ -31,13 +31,13 @@ export default function LoginPage() {
                         name="email"
                         type="email"
                         required
-                        className="mt-1 block w-full px-3 py-2 border border-gray-300 text-black
+                        className="mt-1 block w-full px-3 py-2 border border-gray-300 text-gray-900
                         rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                     />
                     </div>
 
                     <div>
-                    <label htmlFor="password" className="block text-sm font-medium text-black">
+                    <label htmlFor="password" className="block text-sm font-medium text-gray-900">
                         Senha
                     </label>
                     <input
@@ -45,7 +45,7 @@ export default function LoginPage() {
                         name="password"
                         type="password"
                         required
-                        className="mt-1 block w-full px-3 py-2 border border-gray-300 text-black
+                        className="mt-1 block w-full px-3 py-2 border border-gray-300 text-gray-900
                         rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                     />
                     </div>
