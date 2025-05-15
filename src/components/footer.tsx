@@ -2,6 +2,7 @@
 import React from 'react';
 import Link from 'next/link';
 
+//Tem que ver esse footer ae 
 export function Footer() {
   return (
     <footer className="bg-blue-700 text-white py-8 px-4">
