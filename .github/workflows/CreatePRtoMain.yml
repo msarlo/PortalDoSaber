@@ -3,18 +3,21 @@ name: Create PR to Main
 on:
   push:
     branches:
-      - 'dev'
+      - dev  # Changed from Dev to dev
 
 jobs:
   test-and-create-pr:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
         with:
-          fetch-depth: 0 # Importante para ter acesso a todo o histórico
+          fetch-depth: 0
       
-      # Configuração específica para Next.js + TypeScript
+      - name: Get last merge
+        run: |
+          LAST_MERGE=$(git log --merges --pretty=format:"%H" origin/main..origin/dev | head -n 1)
+          echo "LAST_MERGE=$LAST_MERGE" >> $GITHUB_ENV
+      
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
@@ -36,11 +39,11 @@ jobs:
       - name: Get commits since last merge
         id: get_changes
         run: |
-          LAST_MERGE=$(git log --merges --pretty=format:"%H" origin/main..origin/Dev | head -n 1)
+          LAST_MERGE=$(git log --merges --pretty=format:"%H" origin/main..origin/dev | head -n 1)
           if [ -z "$LAST_MERGE" ]; then
-            CHANGES=$(git log --pretty=format:"- %s (%h)" origin/main..origin/Dev)
+            CHANGES=$(git log --pretty=format:"- %s (%h)" origin/main..origin/dev)
           else
-            CHANGES=$(git log --pretty=format:"- %s (%h)" $LAST_MERGE..origin/Dev)
+            CHANGES=$(git log --pretty=format:"- %s (%h)" $LAST_MERGE..origin/dev)
           fi
           echo "changes<<EOF" >> $GITHUB_OUTPUT
           echo "$CHANGES" >> $GITHUB_OUTPUT
