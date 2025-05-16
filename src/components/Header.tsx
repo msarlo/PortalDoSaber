@@ -27,22 +27,8 @@ export function Header({ children }: Props) {
           </Link>
         </div>
 
-        {/* Navigation */}
-        <nav className="flex gap-6 items-center">
-          <LinkButton
-            href="/cursos"
-            label="Cursos"
-          />
-          <LinkButton
-
-            href="/cadastro"
-            label="Cadastro"
-          />
-          <LinkButton
-            href="/login"
-            label="Login"
-          />
-        </nav>
+        {children}
+        
       </div>
     </header>
   );
