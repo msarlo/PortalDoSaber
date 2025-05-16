@@ -10,11 +10,7 @@ export default function HomePage() {
     <main className="min-h-screen bg-gray-50">
       <Header>
         <nav className="flex gap-6 items-center">
-          <LinkButton
-            href="/login"
-            label="Login"
-          />
-          <LinkButton
+         <LinkButton
             href="/cadastro"
             label="Cadastro"
           />
@@ -74,7 +70,13 @@ export default function HomePage() {
 
           {/* Main Courses Section */}
           <div className="bg-gradient-to-br from-blue-400 to-white p-8 rounded-lg shadow-md">
-            <h2 className="text-2xl font-bold mb-6 text-blue-800">Principais Cursos</h2>
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-2xl font-bold text-blue-800">Principais Cursos</h2>
+              <LinkButton
+                href='/cursos'
+                label='Todos os Cursos'
+              />
+            </div>
             <div className="space-y-4">
               {mainCourses.map((course, index) => (
                 <div key={index} className="p-4 border rounded hover:bg-gray-50 transition-colors cursor-pointer">
