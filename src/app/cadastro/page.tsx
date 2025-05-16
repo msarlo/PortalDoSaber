@@ -59,7 +59,7 @@ export default function CadastroPage() {
       </Header>
       <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
-          <h2 className="text-center text-3xl font-extrabold text-gray-900">
+          <h2 className="text-center text-3xl font-extrabold text-black">
             Criar nova conta
           </h2>
         </div>
@@ -72,7 +72,7 @@ export default function CadastroPage() {
               )}
 
               <div>
-                <label htmlFor="nome" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="nome" className="block text-sm font-medium text-gray-900">
                   Nome completo
                 </label>
                 <input
@@ -80,14 +80,15 @@ export default function CadastroPage() {
                   name="nome"
                   type="text"
                   required
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 text-gray-900
+                  rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                   value={formData.name}
                   onChange={handleChange}
                 />
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="email" className="block text-sm font-medium text-black">
                   Email
                 </label>
                 <input
@@ -95,14 +96,15 @@ export default function CadastroPage() {
                   name="email"
                   type="email"
                   required
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 
+                  rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                   value={formData.email}
                   onChange={handleChange}
                 />
               </div>
 
               <div>
-                <label htmlFor="profissao" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="profissao" className="block text-sm font-medium text-black">
                   Profissão
                 </label>
                 <input
@@ -110,14 +112,15 @@ export default function CadastroPage() {
                   name="profissao"
                   type="text"
                   required
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 text-black
+                  rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                   value={formData.profession}
                   onChange={handleChange}
                 />
               </div>
 
               <div>
-                <label htmlFor="senha" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="senha" className="block text-sm font-medium text-black">
                   Senha
                 </label>
                 <input
@@ -125,14 +128,15 @@ export default function CadastroPage() {
                   name="senha"
                   type="password"
                   required
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 text-black
+                  rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                   value={formData.password}
                   onChange={handleChange}
                 />
               </div>
 
               <div>
-                <label htmlFor="confirmarSenha" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="confirmarSenha" className="block text-sm font-medium text-black">
                   Confirmar Senha
                 </label>
                 <input
@@ -140,7 +144,8 @@ export default function CadastroPage() {
                   name="confirmarSenha"
                   type="password"
                   required
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 text-black
+                  rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                   value={formData.confirmPassword}
                   onChange={handleChange}
                 />
