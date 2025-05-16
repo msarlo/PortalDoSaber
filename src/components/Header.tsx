@@ -6,12 +6,12 @@ import { LinkButton } from '@/components/LinkButton';
 import { ReactNode } from 'react';
 
 type Props = {
-  children: ReactNode;
+  children?: ReactNode;
 };
 
 export function Header({ children }: Props) {
   return (
-    <header className="bg-blue-700 text-white p-4 sticky top-0 z-10">
+    <header className="bg-blue-500 text-white p-4 sticky top-0 z-10">
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center gap-2">
           <Link href="/">
@@ -22,7 +22,7 @@ export function Header({ children }: Props) {
                 width={300}
                 height={500}
               />
-              <h1 className="text-xl font-bold">Capacitação PJF</h1>
+              <h1 className="text-xl font-bold">Portal Saber</h1>
             </div>
           </Link>
         </div>
