@@ -3,7 +3,7 @@ name: Create PR to Main
 on:
   push:
     branches:
-      - 'Dev'
+      - 'dev'
 
 jobs:
   test-and-create-pr:
