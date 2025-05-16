@@ -60,9 +60,11 @@ const mainCourses = [
   {
     title: "GLPI",
     image: "/assets/images/logoPrefeitura.png",
+    slug: "glpi"
   },
   {
     title: "1DOC",
     image: "/assets/images/logoPrefeitura.png",
+    slug: "umdoc"
   }
 ];
