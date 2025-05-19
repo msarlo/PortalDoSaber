@@ -1,24 +1,38 @@
-import React from 'react';
+'use client';
+
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Header } from '@/components/Header';
 import { LinkButton } from '@/components/LinkButton';
 import { Container } from '@/components/Container';
+import { getListarCursos, Curso } from '@/lib/data';
 
-// Testando commit pull request
 export default function HomePage() {
+  const [cursos, setCursos] = useState<Curso[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadCursos() {
+      try {
+        const data = await getListarCursos();
+        setCursos(data);
+      } catch (error) {
+        console.error("Erro ao carregar cursos:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    loadCursos();
+  }, []);
+
   return (
     <main className="min-h-screen bg-gray-50">
       <Header>
         <nav className="flex gap-6 items-center">
-          <LinkButton
-            href='/login'
-            label='Login'
-          />
-          <LinkButton
-            href="/cadastro"
-            label="Cadastro"
-          />
+          <LinkButton href='/login' label='login' />
+          <LinkButton href="/cadastro" label="Cadastro" />
         </nav>
       </Header>
 
@@ -33,40 +47,27 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Seção de cursos */}
       <section className="container mx-auto py-12 px-4">
         <h2 className="text-2xl font-bold mb-6 text-blue-800 text-center">Principais Cursos</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
-          {mainCourses.map((course, index) => (
-            <Container
-              key={index}
-              img={course.image}
-              buttonText={course.title}
-              href={`/cursos/${course.slug}`}
-            />
-          ))}
-        </div>
+        
+        {isLoading ? (
+          <div className="flex justify-center py-12">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+            {cursos.map((course) => (
+              <Container
+                key={course.id}
+                img={course.image}
+                buttonText={course.title}
+                href={`/cursos/${course.slug}`}
+              />
+            ))}
+          </div>
+        )}
       </section>
     </main>
   );
 }
-
-const mainCourses = [
-  {
-    title: "Sistema PRONTO",
-    image: "/assets/images/logoPrefeitura.png",
-    slug: "sistema-pronto",
-
-  },
-  {
-    title: "GLPI",
-    image: "/assets/images/logoPrefeitura.png",
-    slug: "glpi"
-  },
-  {
-    title: "1DOC",
-    image: "/assets/images/logoPrefeitura.png",
-    slug: "umdoc"
-  }
-];
-
-//olha que legal luis
