@@ -3,7 +3,7 @@ import { Header } from '@/components/Header';
 import { LinkButton } from '@/components/LinkButton';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useFormValidation } from '@/hooks/userFormValidation';
+import { useFormValidation } from '@/hook/userFormValidation';
 import { cadastroSchema, type CadastroFormData } from '@/schemas/userSchemas';
 
 export default function CadastroPage() {
@@ -97,11 +97,14 @@ export default function CadastroPage() {
                   name="email"
                   type="email"
                   required
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 
-                  rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                  className={`mt-1 block w-full px-3 py-2 border ${errors.email ? 'border-red-500' : 'border-gray-300'} 
+                  rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500`}
                   value={formData.email}
                   onChange={handleChange}
                 />
+                {errors.email && (
+                  <p className="mt-1 text-sm text-red-600">{errors.email}</p>
+                )}
               </div>
 
               <div>
@@ -113,11 +116,14 @@ export default function CadastroPage() {
                   name="profession"
                   type="text"
                   required
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 text-black
-                  rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                  className={`mt-1 block w-full px-3 py-2 border ${errors.profession ? 'border-red-500' : 'border-gray-300'} text-black
+                  rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500`}
                   value={formData.profession}
                   onChange={handleChange}
                 />
+                {errors.profession && (
+                  <p className="mt-1 text-sm text-red-600">{errors.profession}</p>
+                )}
               </div>
 
               <div>
@@ -129,11 +135,14 @@ export default function CadastroPage() {
                   name="password"
                   type="password"
                   required
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 text-black
-                  rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                  className={`mt-1 block w-full px-3 py-2 border ${errors.password ? 'border-red-500' : 'border-gray-300'} text-black
+                  rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500`}
                   value={formData.password}
                   onChange={handleChange}
                 />
+                {errors.password && (
+                  <p className="mt-1 text-sm text-red-600">{errors.password}</p>
+                )}
               </div>
 
               <div>
@@ -145,11 +154,14 @@ export default function CadastroPage() {
                   name="confirmPassword"
                   type="password"
                   required
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 text-black
-                  rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                  className={`mt-1 block w-full px-3 py-2 border ${errors.confirmPassword ? 'border-red-500' : 'border-gray-300'} text-black
+                  rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500`}
                   value={formData.confirmPassword}
                   onChange={handleChange}
                 />
+                {errors.confirmPassword && (
+                  <p className="mt-1 text-sm text-red-600">{errors.confirmPassword}</p>
+                )}
               </div>
 
               <div>
