@@ -3,18 +3,20 @@ import { Header } from '@/components/Header';
 import { LinkButton } from '@/components/LinkButton';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useFormValidation } from '@/hooks/userFormValidation';
+import { cadastroSchema, type CadastroFormData } from '@/schemas/userSchemas';
 
-// teste 75
 export default function CadastroPage() {
   const router = useRouter();
-  const [formData, setFormData] = useState({
-    nome: '',
+  const { errors, validate, clearError } = useFormValidation(cadastroSchema);
+  
+  const [formData, setFormData] = useState<CadastroFormData>({
+    name: '',
     email: '',
-    senha: '',
-    confirmarSenha: '',
-    profissao: ''
+    password: '',
+    confirmPassword: '',
+    profession: ''
   });
-  const [error, setError] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -22,28 +24,24 @@ export default function CadastroPage() {
       ...prev,
       [name]: value
     }));
+    
+    // Limpar erro quando o usuário começa a digitar
+    clearError(name);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Basic validation
-    if (!formData.nome || !formData.email || !formData.senha || !formData.profissao) {
-      setError('Por favor, preencha todos os campos.');
-      return;
-    }
-
-    if (formData.senha !== formData.confirmarSenha) {
-      setError('As senhas não coincidem.');
-      return;
-    }
-
-    try {
-      // Here you would typically make an API call to register the user
-      console.log('Form submitted:', formData);
-      router.push('/login'); // Redirect to login after successful registration
-    } catch (err) {
-      setError('Erro ao cadastrar. Tente novamente.');
+    const result = validate(formData);
+    
+    if (result.success) {
+      try {
+        // Aqui você faria sua chamada de API
+        console.log('Form submitted:', result.data);
+        router.push('/login');
+      } catch (err) {
+        console.error('Erro no cadastro:', err);
+      }
     }
   };
 
@@ -67,24 +65,27 @@ export default function CadastroPage() {
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
           <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
             <form className="space-y-6" onSubmit={handleSubmit}>
-              {error && (
-                <div className="text-red-600 text-sm text-center">{error}</div>
+              {errors.form && (
+                <div className="text-red-600 text-sm text-center">{errors.form}</div>
               )}
 
               <div>
-                <label htmlFor="nome" className="block text-sm font-medium text-gray-900">
+                <label htmlFor="name" className="block text-sm font-medium text-gray-900">
                   Nome completo
                 </label>
                 <input
-                  id="nome"
-                  name="nome"
+                  id="name"
+                  name="name"
                   type="text"
                   required
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 text-gray-900
-                  rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                  value={formData.nome}
+                  className={`mt-1 block w-full px-3 py-2 border ${errors.name ? 'border-red-500' : 'border-gray-300'} text-gray-900
+                  rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500`}
+                  value={formData.name}
                   onChange={handleChange}
                 />
+                {errors.name && (
+                  <p className="mt-1 text-sm text-red-600">{errors.name}</p>
+                )}
               </div>
 
               <div>
@@ -104,49 +105,49 @@ export default function CadastroPage() {
               </div>
 
               <div>
-                <label htmlFor="profissao" className="block text-sm font-medium text-black">
+                <label htmlFor="profession" className="block text-sm font-medium text-black">
                   Profissão
                 </label>
                 <input
-                  id="profissao"
-                  name="profissao"
+                  id="profession"
+                  name="profession"
                   type="text"
                   required
                   className="mt-1 block w-full px-3 py-2 border border-gray-300 text-black
                   rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                  value={formData.profissao}
+                  value={formData.profession}
                   onChange={handleChange}
                 />
               </div>
 
               <div>
-                <label htmlFor="senha" className="block text-sm font-medium text-black">
+                <label htmlFor="password" className="block text-sm font-medium text-black">
                   Senha
                 </label>
                 <input
-                  id="senha"
-                  name="senha"
+                  id="password"
+                  name="password"
                   type="password"
                   required
                   className="mt-1 block w-full px-3 py-2 border border-gray-300 text-black
                   rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                  value={formData.senha}
+                  value={formData.password}
                   onChange={handleChange}
                 />
               </div>
 
               <div>
-                <label htmlFor="confirmarSenha" className="block text-sm font-medium text-black">
+                <label htmlFor="confirmPassword" className="block text-sm font-medium text-black">
                   Confirmar Senha
                 </label>
                 <input
-                  id="confirmarSenha"
-                  name="confirmarSenha"
+                  id="confirmPassword"
+                  name="confirmPassword"
                   type="password"
                   required
                   className="mt-1 block w-full px-3 py-2 border border-gray-300 text-black
                   rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                  value={formData.confirmarSenha}
+                  value={formData.confirmPassword}
                   onChange={handleChange}
                 />
               </div>
