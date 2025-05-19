@@ -9,7 +9,7 @@ export default function LoginPage() {
                <nav className="flex gap-6 items-center">
                  <LinkButton
                    href="/"
-                   label="HOME"
+                   label="Home"
                  />
                </nav>
              </Header>
