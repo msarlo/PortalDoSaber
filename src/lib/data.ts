@@ -28,7 +28,7 @@ export async function getListarCursos(): Promise<Curso[]> {
       id: 3,
       title: "1DOC",
       image: "/assets/images/logoPrefeitura.png",
-      slug: "1doc",
+      slug: "umdoc",
       description: "Gerencie documentos e processos com este sistema completo."
     }
   ];
