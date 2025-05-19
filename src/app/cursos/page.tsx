@@ -1,9 +1,11 @@
+"use client"
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Header } from '@/components/Header';
 import { LinkButton } from '@/components/LinkButton';
 import { Container } from '@/components/Container';
+import { SearchBar } from '@/components/SearchBar';
 
 // Testando commit pull request
 export default function HomePage() {
@@ -32,6 +34,9 @@ export default function HomePage() {
           </p>
         </div>
       </section>
+
+      {/* seção de pesquisa */}
+      <SearchBar placeholder='Pesquisar cursos...' onSearch={(query) => console.log(query)} />
 
       <section className="container mx-auto py-12 px-4">
         <h2 className="text-2xl font-bold mb-6 text-blue-800 text-center">Principais Cursos</h2>
