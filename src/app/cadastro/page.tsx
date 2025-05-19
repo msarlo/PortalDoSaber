@@ -8,11 +8,11 @@ import { useRouter } from 'next/navigation';
 export default function CadastroPage() {
   const router = useRouter();
   const [formData, setFormData] = useState({
-    name: '',
+    nome: '',
     email: '',
-    password: '',
-    confirmPassword: '',
-    profession: ''
+    senha: '',
+    confirmarSenha: '',
+    profissao: ''
   });
   const [error, setError] = useState('');
 
@@ -28,12 +28,12 @@ export default function CadastroPage() {
     e.preventDefault();
 
     // Basic validation
-    if (!formData.name || !formData.email || !formData.password || !formData.profession) {
+    if (!formData.nome || !formData.email || !formData.senha || !formData.profissao) {
       setError('Por favor, preencha todos os campos.');
       return;
     }
 
-    if (formData.password !== formData.confirmPassword) {
+    if (formData.senha !== formData.confirmarSenha) {
       setError('As senhas não coincidem.');
       return;
     }
@@ -53,7 +53,7 @@ export default function CadastroPage() {
         <nav className="flex gap-6 items-center">
           <LinkButton
             href="/"
-            label="HOME"
+            label="Home"
           />
         </nav>
       </Header>
@@ -82,7 +82,7 @@ export default function CadastroPage() {
                   required
                   className="mt-1 block w-full px-3 py-2 border border-gray-300 text-gray-900
                   rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                  value={formData.name}
+                  value={formData.nome}
                   onChange={handleChange}
                 />
               </div>
@@ -114,7 +114,7 @@ export default function CadastroPage() {
                   required
                   className="mt-1 block w-full px-3 py-2 border border-gray-300 text-black
                   rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                  value={formData.profession}
+                  value={formData.profissao}
                   onChange={handleChange}
                 />
               </div>
@@ -130,7 +130,7 @@ export default function CadastroPage() {
                   required
                   className="mt-1 block w-full px-3 py-2 border border-gray-300 text-black
                   rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                  value={formData.password}
+                  value={formData.senha}
                   onChange={handleChange}
                 />
               </div>
@@ -146,7 +146,7 @@ export default function CadastroPage() {
                   required
                   className="mt-1 block w-full px-3 py-2 border border-gray-300 text-black
                   rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                  value={formData.confirmPassword}
+                  value={formData.confirmarSenha}
                   onChange={handleChange}
                 />
               </div>

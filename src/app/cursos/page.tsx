@@ -13,7 +13,7 @@ export default function HomePage() {
         <nav className="flex gap-6 items-center">
           <LinkButton
             href='/login'
-            label='login'
+            label='Login'
           />
           <LinkButton
             href="/cadastro"
