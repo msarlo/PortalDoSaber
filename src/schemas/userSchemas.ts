@@ -18,7 +18,7 @@ export const cadastroSchema = z.object({
     .min(1, "Por favor, confirme sua senha"),
     
   profession: z.string()
-    .nonempty("Selecione alguma profissão")
+    .nonempty("Selecione alguma role")
     
     
 }).refine(data => data.password === data.confirmPassword, {
