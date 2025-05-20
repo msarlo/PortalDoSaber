@@ -4,6 +4,7 @@ export interface Curso {
   image: string;
   slug: string;
   description?: string;
+  role: 'Saude' | 'Comum';  // Novo campo para controlar o acesso
 }
 
 export async function getListarCursos(): Promise<Curso[]> {
@@ -15,21 +16,24 @@ export async function getListarCursos(): Promise<Curso[]> {
       title: "Sistema PRONTO",
       image: "/assets/images/logoPrefeitura.png",
       slug: "pronto",
-      description: "Aprenda os fundamentos do sistema e suas principais funcionalidades."
+      description: "Aprenda os fundamentos do sistema e suas principais funcionalidades.",
+      role: "Saude"  
     },
     {
       id: 2,
       title: "GLPI",
       image: "/assets/images/logoPrefeitura.png",
       slug: "glpi",
-      description: "Domine as ferramentas essenciais para gestão de chamados."
+      description: "Domine as ferramentas essenciais para gestão de chamados.",
+      role: "Comum"  
     },
     {
       id: 3,
       title: "1DOC",
       image: "/assets/images/logoPrefeitura.png",
       slug: "umdoc",
-      description: "Gerencie documentos e processos com este sistema completo."
+      description: "Gerencie documentos e processos com este sistema completo.",
+      role: "Comum"  
     }
   ];
 }
