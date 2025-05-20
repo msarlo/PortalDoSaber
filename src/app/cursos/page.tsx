@@ -7,6 +7,7 @@ import { LinkButton } from '@/components/LinkButton';
 import { Container } from '@/components/Container';
 import { getListarCursos, Curso } from '@/lib/data';
 import { SearchBar } from '@/components/SearchBar';
+import { Banner } from '@/components/Banner';
 
 export default function HomePage() {
   const [cursos, setCursos] = useState<Curso[]>([]);
@@ -30,8 +31,8 @@ export default function HomePage() {
   }, []);
 
   const handleSearch = (query: string) => {
-    const filtered = cursos.filter((curso) => curso.title.toLowerCase().includes(query.toLocaleLowerCase()) 
-    && curso.slug.toLowerCase().includes(query.toLocaleLowerCase()));
+    const filtered = cursos.filter((curso) => curso.title.toLowerCase().includes(query.toLocaleLowerCase())
+      && curso.slug.toLowerCase().includes(query.toLocaleLowerCase()));
     setCursosFiltrados(filtered);
   };
 
@@ -45,15 +46,10 @@ export default function HomePage() {
       </Header>
 
       {/* seção boas vindas */}
-      <section className="bg-gray-200 text-gray-800 py-16 rounded-lg shadow-[4px_4px_10px_0px_rgba(0,0,0,0.1)] mx-4 my-8 transform hover:scale-[1.02] transition-all duration-300">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl font-bold mb-4 text-blue-700">Bem-vindo ao Portal do Saber!</h1>
-          <p className="text-xl max-w-3xl mx-auto">
-            Nossa plataforma foi criada para ajudar profissionais a navegar por processos e ações
-            de forma simples e eficiente. Explore nossos tutoriais e encontre o que você precisa!
-          </p>
-        </div>
-      </section>
+      <Banner title="Bem-vindo ao Portal do Saber!"
+        descricao="Nossa plataforma foi criada para ajudar profissionais a navegar por processos e ações
+        de forma simples e eficiente. Explore nossos tutoriais e encontre o que você precisa!"
+      />
 
       {/* seção de pesquisa */}
       <SearchBar placeholder='Pesquisar cursos...' onSearch={handleSearch} />
@@ -62,7 +58,7 @@ export default function HomePage() {
         <h2 className="text-2xl font-bold mb-6 text-blue-800 text-center">
           {cursosFiltrados.length === 0 ? "Nenhum curso encontrado" : "Cursos"}
         </h2>
-        
+
         {isLoading ? (
           <div className="flex justify-center py-12">
             <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
