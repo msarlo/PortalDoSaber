@@ -100,14 +100,27 @@ export default function CadastroPage() {
                 <label htmlFor="profession" className="block text-sm font-medium text-black">
                   Profissão
                 </label>
-                <input
+                <select
                   id="profession"
-                  type="text"
                   className={`mt-1 block w-full px-3 py-2 border ${errors.profession ? 'border-red-500' : 'border-gray-300'} text-black
-                  rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500`}
+                  rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-white`}
                   disabled={isSubmitting}
                   {...register('profession')}
-                />
+                >
+                  <option value="">Selecione sua profissão</option>
+                  <option value="Recepcionista">Recepcionista</option>
+                  <option value="Médico">Médico</option>
+                  <option value="Enfermeiro">Enfermeiro</option>
+                  <option value="Dentista">Dentista</option>
+                  <option value="Farmacêutico">Farmacêutico</option>
+                  <option value="Vigilante Sanitário">Vigilante Sanitário</option>
+                  <option value="Assistente Social">Assistente Social</option>
+                  <option value="Agente Comunitário de Saúde">Agente Comunitário de Saúde</option>
+                  <option value="Aux/Tec de Enfermagem">Aux/Tec de Enfermagem</option>
+                  <option value="Residente">Residente</option>
+                  <option value="Estagiário">Estagiário</option>
+                  <option value="Outro">Outro</option>
+                </select>
                 {errors.profession && (
                   <p className="mt-1 text-sm text-red-600">{errors.profession.message}</p>
                 )}
