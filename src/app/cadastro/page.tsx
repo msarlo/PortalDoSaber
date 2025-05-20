@@ -107,19 +107,9 @@ export default function CadastroPage() {
                   disabled={isSubmitting}
                   {...register('profession')}
                 >
-                  <option value="">Selecione sua profissão</option>
-                  <option value="Recepcionista">Recepcionista</option>
-                  <option value="Médico">Médico</option>
-                  <option value="Enfermeiro">Enfermeiro</option>
-                  <option value="Dentista">Dentista</option>
-                  <option value="Farmacêutico">Farmacêutico</option>
-                  <option value="Vigilante Sanitário">Vigilante Sanitário</option>
-                  <option value="Assistente Social">Assistente Social</option>
-                  <option value="Agente Comunitário de Saúde">Agente Comunitário de Saúde</option>
-                  <option value="Aux/Tec de Enfermagem">Aux/Tec de Enfermagem</option>
-                  <option value="Residente">Residente</option>
-                  <option value="Estagiário">Estagiário</option>
-                  <option value="Outro">Outro</option>
+                  <option value="">Selecione sua role</option>
+                  <option value="Saude">Profissional da Saúde</option>
+                  <option value="Comum">Usuário Comum</option>
                 </select>
                 {errors.profession && (
                   <p className="mt-1 text-sm text-red-600">{errors.profession.message}</p>
