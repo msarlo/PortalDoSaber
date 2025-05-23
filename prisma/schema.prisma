@@ -1,38 +1,30 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider = "sqlite"
+  url      = "file:./dev.db"
 }
 
 model User {
-  id     String   @id @default(uuid())
-  nome   String
-  senha  String
-  email  String   @unique
-  role   Role
-}
+  id    String @id @default(uuid())
+  name  String
+  email String @unique
+  senha String
+  role  Role   @default(COMUM)
 
-model Plataforma {
-  id    String   @id @default(uuid())
-  nome  String
-  slug  String   @unique
-  acoes Acao[]
-}
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-model Acao {
-  id          String      @id @default(uuid())
-  nome        String
-  slug        String      @unique
-  plataforma  Plataforma  @relation(fields: [plataformaId], references: [id])
-  plataformaId String
-  ike         Boolean
-  comentarios String?
+  @@map("users")
 }
 
 enum Role {
-  saude
-  comum
+  SAUDE
+  COMUM
+  ADMIN
 }
