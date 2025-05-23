@@ -68,7 +68,15 @@ export default function HomePage() {
         de forma simples e eficiente. Explore nossos tutoriais e encontre o que você precisa!"
       />
 
-      {/* Seleção de perfil - aparece apenas se nenhum perfil for selecionado */}
+      {/* Loading State - Mostrar o novo loader quando estiver carregando */}
+      {isLoading && (
+        <div className="flex flex-col items-center justify-center py-20">
+          <div className="w-10 h-10 border-4 border-t-blue-500 border-gray-300 rounded-full animate-spin"></div>
+          <p className="mt-4 text-gray-600">Carregando opções...</p>
+        </div>
+      )}
+
+      {/* Seleção de perfil - aparece apenas se nenhum perfil for selecionado E não está carregando */}
       {!selectedRole && !isLoading && (
         <section className="container mx-auto py-12 px-4">
           <h2 className="text-2xl font-bold mb-6 text-blue-800 text-center">
@@ -80,7 +88,7 @@ export default function HomePage() {
               className="bg-white border-2 border-blue-600 hover:bg-blue-50 rounded-xl shadow-lg p-8 text-center cursor-pointer transform transition-transform hover:scale-105 flex-1 max-w-md mx-auto"
             >
               <div className="text-blue-600 text-5xl mb-4">
-                <i className="fas fa-user-md"></i> {/* Você pode substituir por um ícone ou imagem */}
+                <i className="fas fa-user-md"></i>
               </div>
               <h3 className="text-2xl font-bold text-blue-800 mb-2">Sou Profissional da Saúde</h3>
               <p className="text-gray-600">Acesse conteúdos específicos para profissionais da área da saúde</p>
@@ -91,7 +99,7 @@ export default function HomePage() {
               className="bg-white border-2 border-green-600 hover:bg-green-50 rounded-xl shadow-lg p-8 text-center cursor-pointer transform transition-transform hover:scale-105 flex-1 max-w-md mx-auto"
             >
               <div className="text-green-600 text-5xl mb-4">
-                <i className="fas fa-user"></i> {/* Você pode substituir por um ícone ou imagem */}
+                <i className="fas fa-user"></i>
               </div>
               <h3 className="text-2xl font-bold text-green-800 mb-2">Sou Usuário Comum</h3>
               <p className="text-gray-600">Acesse conteúdos para o público geral</p>
@@ -123,9 +131,11 @@ export default function HomePage() {
                 : `Cursos para ${selectedRole === 'Saude' ? 'Profissionais da Saúde' : 'Usuários Comuns'}`}
             </h2>
 
+            {/* Usando o novo estilo de loader para os cursos também */}
             {isLoading ? (
-              <div className="flex justify-center py-12">
-                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+              <div className="flex flex-col items-center justify-center py-16">
+                <div className="w-10 h-10 border-4 border-t-blue-500 border-gray-300 rounded-full animate-spin"></div>
+                <p className="mt-4 text-gray-600">Carregando cursos...</p>
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
