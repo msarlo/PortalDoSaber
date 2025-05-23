@@ -2,7 +2,6 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { LinkButton } from '@/components/LinkButton';
 import { ReactNode } from 'react';
 
 type Props = {
@@ -12,7 +11,7 @@ type Props = {
 export function Header({ children }: Props) {
   return (
     <header className="bg-blue-500 text-white p-4 sticky top-0 z-10">
-      <div className="container mx-auto flex justify-between items-center">
+      <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         <div className="flex items-center gap-2">
           <Link href="/">
             <div className="flex items-center gap-2">
