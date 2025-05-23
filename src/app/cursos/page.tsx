@@ -56,9 +56,9 @@ export default function HomePage() {
   return (
     <main className="min-h-screen bg-gray-50">
       <Header>
-        <nav className="flex gap-6 items-center">
-          <LinkButton href='/login' label='Login' />
+        <nav className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-center">
           <LinkButton href="/cadastro" label="Cadastro" />
+          <LinkButton href='/login' label='Login' />
         </nav>
       </Header>
 
