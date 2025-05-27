@@ -14,7 +14,7 @@ export async function getListarCursos(): Promise<Curso[]> {
     {
       id: 1,
       title: "Sistema PRONTO",
-      image: "/assets/images/logoPrefeitura.png",
+      image: "/assets/images/PRONTO.png",
       slug: "pronto",
       description: "Aprenda os fundamentos do sistema e suas principais funcionalidades.",
       role: "Saude"  
@@ -22,7 +22,7 @@ export async function getListarCursos(): Promise<Curso[]> {
     {
       id: 2,
       title: "GLPI",
-      image: "/assets/images/logoPrefeitura.png",
+      image: "/assets/images/GLPI.jpg",
       slug: "glpi",
       description: "Domine as ferramentas essenciais para gestão de chamados.",
       role: "Comum"  
@@ -30,7 +30,7 @@ export async function getListarCursos(): Promise<Curso[]> {
     {
       id: 3,
       title: "1DOC",
-      image: "/assets/images/logoPrefeitura.png",
+      image: "/assets/images/umdoc.jpg",
       slug: "umdoc",
       description: "Gerencie documentos e processos com este sistema completo.",
       role: "Comum"  
