@@ -98,7 +98,7 @@ export default function CadastroPage() {
 
               <div>
                 <label htmlFor="profession" className="block text-sm font-medium text-black">
-                  Profissão
+                  Tipo de usuário
                 </label>
                 <select
                   id="profession"
@@ -107,9 +107,9 @@ export default function CadastroPage() {
                   disabled={isSubmitting}
                   {...register('profession')}
                 >
-                  <option value="">Selecione sua role</option>
-                  <option value="Saude">Profissional da Saúde</option>
-                  <option value="Comum">Usuário Comum</option>
+                  <option value="">Selecione o tipo de usuário</option>
+                  <option value="SAUDE">Profissional da Saúde</option>
+                  <option value="COMUM">Usuário Comum</option>
                 </select>
                 {errors.profession && (
                   <p className="mt-1 text-sm text-red-600">{errors.profession.message}</p>

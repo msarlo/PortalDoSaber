@@ -1,19 +1,19 @@
 import { prisma } from '@/lib/prisma';
 import { hash, compare } from 'bcryptjs';
 import { 
-  criarUsuarioSchema, 
+  criarUsuarioBackendSchema, 
   loginSchema, 
   atualizarUsuarioSchema,
   buscarPorIdSchema,
-  type CriarUsuarioInput,
-  type LoginInput,
+  type CriarUsuarioBackendInput, 
+  type LoginFormData,
   type AtualizarUsuarioInput
 } from '@/schemas/userSchemas';
 
 // Criar usuário
 export async function criarUsuario(data: unknown) {
   // Validar dados com Zod
-  const validatedData = criarUsuarioSchema.parse(data);
+  const validatedData = criarUsuarioBackendSchema.parse(data);
   
   // Verificar se o email já existe
   const existingUser = await prisma.user.findUnique({
