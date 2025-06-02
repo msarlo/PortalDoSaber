@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import { criarUsuario } from '@/app/services/userService';
 import { ZodError } from 'zod';
 import { converterCadastroParaBackend } from '@/schemas/userSchemas';
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
 
 // API de criação de usuário
 export async function POST(req: NextRequest) {

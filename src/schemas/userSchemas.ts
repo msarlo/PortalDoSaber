@@ -16,16 +16,16 @@ export const cadastroSchema = z.object({
     .email("Forneça um e-mail válido")
     .trim(),
     
-  password: z.string()
+  senha: z.string()
     .min(6, "A senha deve ter pelo menos 6 caracteres"),
     
-  confirmPassword: z.string()
+  confirmSenha: z.string()
     .min(1, "Por favor, confirme sua senha"),
     
-  profession: z.enum(['SAUDE', 'COMUM'], {
+  role: z.enum(['SAUDE', 'COMUM'], {
     errorMap: () => ({ message: "Selecione um tipo de usuário" })
   })
-}).refine(data => data.password === data.confirmPassword, {
+}).refine(data => data.senha === data.confirmSenha, {
   path: ["confirmPassword"],
   message: "As senhas não coincidem",
 });
@@ -104,10 +104,13 @@ export type BuscarPorIdInput = z.infer<typeof buscarPorIdSchema>;
 
 // Converte dados do formulário de cadastro para o formato do backend
 export function converterCadastroParaBackend(dadosCadastro: CadastroFormData): CriarUsuarioBackendInput {
-  return {
+  const dadosConvertidos = {
     name: dadosCadastro.name,
     email: dadosCadastro.email,
-    senha: dadosCadastro.password, // password → senha
-    role: dadosCadastro.profession // profession → role
+    senha: dadosCadastro.senha, 
+    role: dadosCadastro.role 
   };
+
+  console.log("Dados convertidos para o formato do backend:", dadosCadastro);
+ return dadosCadastro;
 }
