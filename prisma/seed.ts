@@ -4,35 +4,55 @@ import { hash } from 'bcryptjs';
 const prisma = new PrismaClient();
 
 async function main() {
-  console.log("Iniciando o seed do banco de dados...");
-  
-  const admin = await prisma.user.upsert({
-    where: { email: 'admin@gmail.com' },
-    update: {},
-    create: {
-      name: 'Administrador',
-      email: 'admin@gmail.com',
-      senha: await hash('123456', 12),
-      role: 'ADMIN' as const,
-    }
+  // Verificar se admin já existe
+  const adminExists = await prisma.user.findUnique({
+    where: { email: 'admin@gmail.com' }
   });
 
-  console.log(`Usuário administrador criado: ${admin.email}`);
-  
-  const gabi = await prisma.user.upsert({
-    where: { email: 'gabi@saude.com' },
-    update: {},
-    create: {
-      name: 'Gabi',
-      email: 'gabi@saude.com',
-      senha: await hash('123456', 12),
-      role: 'SAUDE' as const,
+  if (!adminExists) {
+    // Criar usuário admin
+    const senhaHash = await hash('123456', 12);
+    
+    await prisma.user.create({
+      data: {
+        name: 'Administrador',
+        email: 'admin@gmail.com',
+        senha: senhaHash,
+        role: 'ADMIN'
       }
     });
 
-  console.log(`Gabi user created/updated: ${gabi.email}`);
+    console.log('Usuário admin criado com sucesso!');
+  } else {
+    console.log('Usuário admin já existe.');
+  }
 
-  console.log('Database seed completed successfully!');
+  // Criar alguns usuários de teste (opcional)
+  const testUsers = [
+    {
+      name: 'Dr. Luis Gustavo',
+      email: 'luis@saude.com',
+      senha: await hash('123456', 12),
+      role: 'SAUDE' as const
+    },
+    {
+      name: 'Dra. Gabriela Melo',
+      email: 'gabi@saude.com',
+      senha: await hash('123456', 12),
+      role: 'COMUM' as const
+    }
+  ]
+
+  for (const user of testUsers) {
+    const existingUser = await prisma.user.findUnique({
+      where: { email: user.email }
+    })
+
+    if (!existingUser) {
+      await prisma.user.create({ data: user })
+      console.log(`Usuário criado: ${user.email}`)
+    }
+  }
 }
 
 main()
