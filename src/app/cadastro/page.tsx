@@ -10,30 +10,53 @@ import { cadastroSchema, type CadastroFormData } from '@/schemas/userSchemas';
 export default function CadastroPage() {
   const router = useRouter();
   const [isSuccess, setIsSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   
-  // Inicializa o React Hook Form com Zod
   const { 
     register, 
     handleSubmit, 
     formState: { errors, isSubmitting } 
   } = useForm<CadastroFormData>({
     resolver: zodResolver(cadastroSchema),
-    mode: 'onBlur' // Valida no blur para feedback imediato
+    mode: 'onBlur'
   });
 
-  // Função que recebe dados já validados
   const onSubmit = async (data: CadastroFormData) => {
     try {
-      // Simular chamada de API
-      await new Promise(resolve => setTimeout(resolve, 1000));
-        
-      console.log('Form submitted:', data);
+      setErrorMessage('');
+      setIsSuccess(false); // Resetar o estado de sucesso
+      console.log('Enviando dados para /api/users:', data);
+      
+      const response = await fetch('/api/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          senha: data.senha, 
+          role: data.role 
+        }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        console.error('Erro da API:', result);
+        throw new Error(result.error || `Erro ${response.status} ao criar conta`);
+      }
+
+      console.log('Usuário criado com sucesso pela API!', result);
       setIsSuccess(true);
-        
-      // Redirecionar após pequeno delay para mostrar mensagem de sucesso
-      setTimeout(() => router.push('/login'), 1500);
-    } catch (err) {
-      console.error('Erro no cadastro:', err);
+      setTimeout(() => {
+        router.push('/login');
+      }, 2000);
+
+    } catch (err: any) {
+      console.error('Erro no cadastro (catch do onSubmit):', err);
+      setErrorMessage(err.message || 'Erro inesperado ao criar conta.');
+      setIsSuccess(false);
     }
   };
 
@@ -57,6 +80,13 @@ export default function CadastroPage() {
               <div className="mb-6 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded">
                 <p className="text-center font-medium">
                   Cadastro realizado com sucesso! Redirecionando...
+                </p>
+              </div>
+            )}
+            {errorMessage && (
+              <div className="mb-6 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+                <p className="text-center font-medium">
+                  {errorMessage}
                 </p>
               </div>
             )}
@@ -97,56 +127,56 @@ export default function CadastroPage() {
               </div>
 
               <div>
-                <label htmlFor="profession" className="block text-sm font-medium text-black">
-                  Profissão
+                <label htmlFor="role" className="block text-sm font-medium text-black">
+                  Tipo de usuário
                 </label>
                 <select
-                  id="profession"
-                  className={`mt-1 block w-full px-3 py-2 border ${errors.profession ? 'border-red-500' : 'border-gray-300'} text-black
+                  id="role"
+                  className={`mt-1 block w-full px-3 py-2 border ${errors.role ? 'border-red-500' : 'border-gray-300'} text-black
                   rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-white`}
                   disabled={isSubmitting}
-                  {...register('profession')}
+                  {...register('role')}
                 >
-                  <option value="">Selecione sua role</option>
-                  <option value="Saude">Profissional da Saúde</option>
-                  <option value="Comum">Usuário Comum</option>
+                  <option value="">Selecione o tipo de usuário</option>
+                  <option value="SAUDE">Profissional da Saúde</option>
+                  <option value="COMUM">Usuário Comum</option>
                 </select>
-                {errors.profession && (
-                  <p className="mt-1 text-sm text-red-600">{errors.profession.message}</p>
+                {errors.role && (
+                  <p className="mt-1 text-sm text-red-600">{errors.role.message}</p>
                 )}
               </div>
 
               <div>
-                <label htmlFor="password" className="block text-sm font-medium text-black">
+                <label htmlFor="senha" className="block text-sm font-medium text-black">
                   Senha
                 </label>
                 <input
-                  id="password"
+                  id="senha"
                   type="password"
-                  className={`mt-1 block w-full px-3 py-2 border ${errors.password ? 'border-red-500' : 'border-gray-300'} text-black
+                  className={`mt-1 block w-full px-3 py-2 border ${errors.senha ? 'border-red-500' : 'border-gray-300'} text-black
                   rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500`}
                   disabled={isSubmitting}
-                  {...register('password')}
+                  {...register('senha')}
                 />
-                {errors.password && (
-                  <p className="mt-1 text-sm text-red-600">{errors.password.message}</p>
+                {errors.senha && (
+                  <p className="mt-1 text-sm text-red-600">{errors.senha.message}</p>
                 )}
               </div>
 
               <div>
-                <label htmlFor="confirmPassword" className="block text-sm font-medium text-black">
+                <label htmlFor="confirmSenha" className="block text-sm font-medium text-black">
                   Confirmar Senha
                 </label>
                 <input
-                  id="confirmPassword"
+                  id="confirmSenha"
                   type="password"
-                  className={`mt-1 block w-full px-3 py-2 border ${errors.confirmPassword ? 'border-red-500' : 'border-gray-300'} text-black
+                  className={`mt-1 block w-full px-3 py-2 border ${errors.confirmSenha ? 'border-red-500' : 'border-gray-300'} text-black
                   rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500`}
                   disabled={isSubmitting}
-                  {...register('confirmPassword')}
+                  {...register('confirmSenha')}
                 />
-                {errors.confirmPassword && (
-                  <p className="mt-1 text-sm text-red-600">{errors.confirmPassword.message}</p>
+                {errors.confirmSenha && (
+                  <p className="mt-1 text-sm text-red-600">{errors.confirmSenha.message}</p>
                 )}
               </div>
 

@@ -151,6 +151,13 @@ git commit                           # Finalize o merge
 - Resolva conflitos em sua branch de feature, não nas branches principais
 - Faça push frequentemente para backup e visibilidade das alterações
 
+## Para rodar o banco de dados de acordo com o uso do Prisma
+**Siga os Passos**
+- `npx prisma generate `
+- `npx prisma migrate dev --name init`
+- `npx prisma db seed`
+- `npx prisma studio`
+
 ## Licença
 
 Copyright © Prefeitura de Juiz de Fora. Todos os direitos reservados.
