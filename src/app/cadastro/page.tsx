@@ -97,56 +97,56 @@ export default function CadastroPage() {
               </div>
 
               <div>
-                <label htmlFor="profession" className="block text-sm font-medium text-black">
+                <label htmlFor="role" className="block text-sm font-medium text-black">
                   Tipo de usuário
                 </label>
                 <select
-                  id="profession"
-                  className={`mt-1 block w-full px-3 py-2 border ${errors.profession ? 'border-red-500' : 'border-gray-300'} text-black
+                  id="role"
+                  className={`mt-1 block w-full px-3 py-2 border ${errors.role ? 'border-red-500' : 'border-gray-300'} text-black
                   rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-white`}
                   disabled={isSubmitting}
-                  {...register('profession')}
+                  {...register('role')}
                 >
                   <option value="">Selecione o tipo de usuário</option>
                   <option value="SAUDE">Profissional da Saúde</option>
                   <option value="COMUM">Usuário Comum</option>
                 </select>
-                {errors.profession && (
-                  <p className="mt-1 text-sm text-red-600">{errors.profession.message}</p>
+                {errors.role && (
+                  <p className="mt-1 text-sm text-red-600">{errors.role.message}</p>
                 )}
               </div>
 
               <div>
-                <label htmlFor="password" className="block text-sm font-medium text-black">
+                <label htmlFor="senha" className="block text-sm font-medium text-black">
                   Senha
                 </label>
                 <input
-                  id="password"
+                  id="senha"
                   type="password"
-                  className={`mt-1 block w-full px-3 py-2 border ${errors.password ? 'border-red-500' : 'border-gray-300'} text-black
+                  className={`mt-1 block w-full px-3 py-2 border ${errors.senha ? 'border-red-500' : 'border-gray-300'} text-black
                   rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500`}
                   disabled={isSubmitting}
-                  {...register('password')}
+                  {...register('senha')}
                 />
-                {errors.password && (
-                  <p className="mt-1 text-sm text-red-600">{errors.password.message}</p>
+                {errors.senha && (
+                  <p className="mt-1 text-sm text-red-600">{errors.senha.message}</p>
                 )}
               </div>
 
               <div>
-                <label htmlFor="confirmPassword" className="block text-sm font-medium text-black">
+                <label htmlFor="confirmSenha" className="block text-sm font-medium text-black">
                   Confirmar Senha
                 </label>
                 <input
-                  id="confirmPassword"
+                  id="confirmSenha"
                   type="password"
-                  className={`mt-1 block w-full px-3 py-2 border ${errors.confirmPassword ? 'border-red-500' : 'border-gray-300'} text-black
+                  className={`mt-1 block w-full px-3 py-2 border ${errors.confirmSenha ? 'border-red-500' : 'border-gray-300'} text-black
                   rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500`}
                   disabled={isSubmitting}
-                  {...register('confirmPassword')}
+                  {...register('confirmSenha')}
                 />
-                {errors.confirmPassword && (
-                  <p className="mt-1 text-sm text-red-600">{errors.confirmPassword.message}</p>
+                {errors.confirmSenha && (
+                  <p className="mt-1 text-sm text-red-600">{errors.confirmSenha.message}</p>
                 )}
               </div>
 
