@@ -10,30 +10,53 @@ import { cadastroSchema, type CadastroFormData } from '@/schemas/userSchemas';
 export default function CadastroPage() {
   const router = useRouter();
   const [isSuccess, setIsSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   
-  // Inicializa o React Hook Form com Zod
   const { 
     register, 
     handleSubmit, 
     formState: { errors, isSubmitting } 
   } = useForm<CadastroFormData>({
     resolver: zodResolver(cadastroSchema),
-    mode: 'onBlur' // Valida no blur para feedback imediato
+    mode: 'onBlur'
   });
 
-  // Função que recebe dados já validados
   const onSubmit = async (data: CadastroFormData) => {
     try {
-      // Simular chamada de API
-      await new Promise(resolve => setTimeout(resolve, 1000));
-        
-      console.log('Form submitted:', data);
+      setErrorMessage('');
+      setIsSuccess(false); // Resetar o estado de sucesso
+      console.log('Enviando dados para /api/users:', data);
+      
+      const response = await fetch('/api/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          senha: data.senha, 
+          role: data.role 
+        }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        console.error('Erro da API:', result);
+        throw new Error(result.error || `Erro ${response.status} ao criar conta`);
+      }
+
+      console.log('Usuário criado com sucesso pela API!', result);
       setIsSuccess(true);
-        
-      // Redirecionar após pequeno delay para mostrar mensagem de sucesso
-      setTimeout(() => router.push('/login'), 1500);
-    } catch (err) {
-      console.error('Erro no cadastro:', err);
+      setTimeout(() => {
+        router.push('/login');
+      }, 2000);
+
+    } catch (err: any) {
+      console.error('Erro no cadastro (catch do onSubmit):', err);
+      setErrorMessage(err.message || 'Erro inesperado ao criar conta.');
+      setIsSuccess(false);
     }
   };
 
@@ -57,6 +80,13 @@ export default function CadastroPage() {
               <div className="mb-6 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded">
                 <p className="text-center font-medium">
                   Cadastro realizado com sucesso! Redirecionando...
+                </p>
+              </div>
+            )}
+            {errorMessage && (
+              <div className="mb-6 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+                <p className="text-center font-medium">
+                  {errorMessage}
                 </p>
               </div>
             )}

@@ -107,8 +107,8 @@ export function converterCadastroParaBackend(dadosCadastro: CadastroFormData): C
   const dadosConvertidos = {
     name: dadosCadastro.name,
     email: dadosCadastro.email,
-    senha: dadosCadastro.senha, // password → senha
-    role: dadosCadastro.role // profession → role
+    senha: dadosCadastro.senha, 
+    role: dadosCadastro.role 
   };
 
   console.log("Dados convertidos para o formato do backend:", dadosCadastro);
