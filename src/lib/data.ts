@@ -38,8 +38,62 @@ export async function getListarCursos(): Promise<Curso[]> {
   ];
 }
 
-
 export async function getCursoPorSlug(slug: string): Promise<Curso | undefined> {
   const cursos = await getListarCursos();
   return cursos.find(curso => curso.slug === slug);
+}
+
+export interface Profissional {
+  id: number;
+  name: string;
+  image: string;
+  slug: string;
+}
+
+export async function getListarProfissionais(): Promise<Profissional[]> {
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+  
+  return [
+    { 
+      id: 1, 
+      name: "Médico",
+      image: "", 
+      slug: "medico" 
+    },
+    { 
+      id: 2, 
+      name: "Enfermeiro",
+      image: "",
+      slug: "enfermeiro" 
+    },
+    { 
+      id: 3, 
+      name: "Técnico de Enfermagem", 
+      image: "",
+      slug: "tecnico-enfermagem" 
+    },
+    { 
+      id: 4, 
+      name: "Administrativo", 
+      image: "",
+      slug: "administrativo" 
+    },
+    {
+      id: 5,
+      name: "Farmacêutico",
+      image: "",
+      slug: "farmaceutico"
+    },
+    {
+      id: 6,
+      name: "Recepcionista",
+      image: "",
+      slug: "recepcionista",
+    }
+  ];
+}
+
+export async function getProfissionaisPorSlug(slug: string): Promise<Profissional | undefined> {
+  const profissionais = await getListarProfissionais();
+  return profissionais.find(profissional => profissional.slug === slug);
 }
