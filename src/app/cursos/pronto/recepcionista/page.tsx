@@ -1,8 +1,7 @@
-"use client"
 import React from 'react';
 import { Banner } from '@/components/Banner'; 
 import { Container } from '@/components/Container';
-import { profissoesPronto, Profissao } from '@/lib/prontoData';
+import { tutoriaisProntoRecepicionista,Tutorial } from '@/lib/prontoData';
 import logoProntoBanner from '/public/assets/images/LogoProntoSemBG.png'; // Importe a imagem
 
 export default function CursosProntoPage() {
@@ -25,12 +24,12 @@ export default function CursosProntoPage() {
 
         {/* Grid de Profissões */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 justify-items-center">
-          {profissoesPronto.map((profissao: Profissao) => (
+          {tutoriaisProntoRecepicionista.map((tutorial: Tutorial) => (
             <Container
-              key={profissao.id}
-              img={profissao.imagemSrc}
-              buttonText={profissao.nome}
-              href={`/cursos/pronto/${profissao.slug}`}
+              key={tutorial.id}
+              img={tutorial.imagemSrc}
+              buttonText={tutorial.titulo}
+              href={`/cursos/pronto/${tutorial.profissaoSlug}/${tutorial.slug}`}
             />
           ))}
         </div>
@@ -38,4 +37,3 @@ export default function CursosProntoPage() {
     </main>
   );
 }
-
