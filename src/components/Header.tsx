@@ -1,10 +1,10 @@
-"use client"; // Necessário para hooks como useState, useEffect e useAuth
+"use client"; 
 
 import React, { useState, useEffect, useRef, ReactNode } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useAuth } from '@/contexts/AuthContext'; // Importar o hook useAuth
-import { LinkButton } from './LinkButton'; // Se você ainda usa
+import { useAuth } from '@/contexts/AuthContext'; 
+import { LinkButton } from './LinkButton'; 
 
 // Um ícone simples de usuário como placeholder
 const UserIcon = ({ className }: { className?: string }) => (
@@ -43,10 +43,12 @@ export function Header({ children }: Props) {
     return (
       <header className="bg-blue-600 text-white shadow-md">
         <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-          <Link href="/" className="text-2xl font-bold">
-            Portal Saber
-          </Link>
-          <div className="h-8 w-20 bg-blue-500 animate-pulse rounded"></div> {/* Placeholder para botões/menu */}
+          {/* Placeholder para logo e texto durante o carregamento */}
+          <div className="flex items-center gap-2">
+            <div className="h-10 w-10 bg-blue-500 animate-pulse rounded"></div> {/* Placeholder para logoPrefeitura */}
+            <div className="h-8 w-32 bg-blue-500 animate-pulse rounded"></div> {/* Placeholder para "Portal Saber" */}
+          </div>
+          <div className="h-8 w-20 bg-blue-500 animate-pulse rounded"></div>
         </div>
       </header>
     );
@@ -55,9 +57,28 @@ export function Header({ children }: Props) {
   return (
     <header className="bg-blue-600 text-white shadow-md">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-        <Link href="/" className="text-2xl font-bold">
-          Portal Saber
+        {/* Logo e Nome do Portal */}
+        <Link href="/" className="flex items-center gap-3">
+          <Image 
+            src="/assets/images/logoPrefeitura.png" 
+            alt="Logo Prefeitura" 
+            width={300} 
+            height={100} 
+             
+          />
+          <span className="text-2xl font-bold"> {/* Mantido o span para o texto */}
+            Portal Saber
+          </span>
         </Link>
+
+        {/* Custom Navigation Links passed as children */}
+        {children && (
+          <nav className="hidden md:flex gap-6 items-center">
+            {children}
+          </nav>
+        )}
+        
+        {/* Authentication Status */}
         <nav className="flex gap-4 items-center">
           {isAuthenticated && user ? (
             <div className="relative" ref={dropdownRef}>
