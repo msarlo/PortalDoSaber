@@ -4,11 +4,12 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { loginSchema, type LoginFormData } from '@/schemas/userSchemas';
-import { Header } from '@/components/Header'; 
 import { LinkButton } from '@/components/LinkButton'; 
+import { useAuth } from '@/contexts/AuthContext';
 
 export default function LoginPage() {
   const router = useRouter();
+  const { login } = useAuth();
   const [errorMessage, setErrorMessage] = useState('');
   const [isSuccess, setIsSuccess] = useState(false);
 
@@ -39,15 +40,25 @@ export default function LoginPage() {
         throw new Error(result.error || `Erro ${response.status} ao tentar fazer login`);
       }
 
-      // Salvar o token (ex: localStorage)
-      // CUIDADO: localStorage é vulnerável a XSS. Para produção, considere cookies HttpOnly.
-      localStorage.setItem('authToken', result.token);
-      localStorage.setItem('userData', JSON.stringify(result.user)); // Opcional: salvar dados do usuário
+      if (result.user && result.token) {
+        login(result.user, result.token); // 1. Atualiza o contexto de autenticação
+        setIsSuccess(true);
+        
+        // 2. Força a atualização da rota atual (incluindo o layout e o Header)
+        // para que ele pegue o novo estado de autenticação.
+        router.refresh(); 
 
-      setIsSuccess(true);
-      console.log('Login bem-sucedido!', result);
-      // Redirecionar para uma página protegida, ex: /dashboard ou /cursos
-      router.push('/cursos'); 
+        // 3. Navega para a página de cursos.
+        // Adicionar um pequeno delay pode ajudar em alguns casos, mas router.refresh() deve ser suficiente.
+        // Usaremos um pequeno timeout para garantir que o refresh tenha tempo de ser processado
+        // antes do push, embora idealmente router.refresh() deveria ser síncrono no efeito.
+        setTimeout(() => {
+          router.push('/cursos');
+        }, 50); // Pequeno delay, ajuste ou remova se router.refresh() sozinho funcionar bem.
+
+      } else {
+        throw new Error("Resposta da API de login inválida.");
+      }
 
     } catch (err: any) {
       console.error('Erro no login:', err);
@@ -57,12 +68,7 @@ export default function LoginPage() {
 
   return (
     <>
-      <Header>
-        <nav className="flex gap-6 items-center">
-          <LinkButton href="/" label="Home" />
-          <LinkButton href="/cadastro" label="Cadastro" />
-        </nav>
-      </Header>
+      
       <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
           <h2 className="text-center text-3xl font-extrabold text-black">

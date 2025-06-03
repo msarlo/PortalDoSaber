@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from 'react';
-import { Header } from '@/components/Header';
+
 import { LinkButton } from '@/components/LinkButton';
 import { Container } from '@/components/Container';
 import { getListarCursos, Curso } from '@/lib/data';
@@ -110,13 +110,6 @@ export default function CursosPage() {
 
   return (
     <main className="min-h-screen bg-gray-50">
-      <Header>
-        <nav className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-center">
-          <LinkButton href="/cadastro" label="Cadastro" />
-          <LinkButton href='/login' label='Login' />
-        </nav>
-      </Header>
-
       <Banner title="Bem-vindo ao Portal do Saber!"
         descricao="Nossa plataforma foi criada para ajudar profissionais a navegar por processos e ações de forma simples e eficiente. Explore nossos tutoriais e encontre o que você precisa!"
       />
