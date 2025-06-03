@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header } from '@/components/Header';
+
 import { Banner } from '@/components/Banner';
 
 
@@ -7,7 +7,6 @@ import { Banner } from '@/components/Banner';
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-gray-50">
-      <Header />
       <Banner title="Bem-vindo ao 1DOC"
         descricao="Nossa plataforma foi criada para ajudar profissionais a navegar por processos e ações
             de forma simples e eficiente. "
