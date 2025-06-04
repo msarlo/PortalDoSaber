@@ -7,7 +7,7 @@ interface BannerProps {
 
 export function Banner({ title, descricao }: BannerProps) {
     return (
-        <section className="bg-gradient-to-br from-blue-700 to-blue-100 text-gray-800 py-16 
+        <section className="bg-gradient-to-b from-white to-blue-700 text-gray-800 py-16 
         rounded-lg shadow-[4px_4px_10px_0px_rgba(0,0,0,0.1)] mx-4 my-8 transform hover:scale-[1.01]
         transition-all duration-300">
             <div className="container mx-auto px-4">

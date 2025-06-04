@@ -16,7 +16,7 @@ export interface Tutorial {
 
 export const profissoesPronto: Profissao[] = [
   { id: 'rec', nome: 'Recepcionista', slug: 'recepcionista', imagemSrc: '/assets/icons/pronto/Recepicionista.webp' },
-  { id: 'med', nome: 'Médico', slug: 'medico', imagemSrc: '/assets/icons/pronto/Recepicionista.webp' },
+  { id: 'med', nome: 'Médico', slug: 'medico', imagemSrc: '/assets/icons/pronto/doctor.png' },
   { id: 'enf', nome: 'Enfermeiro', slug: 'enfermeiro', imagemSrc: '/assets/icons/pronto/Recepicionista.webp' },
   { id: 'den', nome: 'Dentista', slug: 'dentista', imagemSrc: '/assets/icons/pronto/Recepicionista.webp' },
   { id: 'farm', nome: 'Farmacêutico', slug: 'farmaceutico', imagemSrc: '/assets/icons/pronto/Recepicionista.webp' },
