@@ -62,11 +62,11 @@ export default function HomePage() {
                     <h3 className="font-semibold text-lg text-gray-800">{course.title}</h3>
                     <p className="text-gray-600">{course.description}</p>
                     {course.image && (
-                      <div className="mt-3">
+                      <div className="mt-auto flex justify-center items-center">
                         <img 
                           src={course.image} 
                           alt={course.title}
-                          className="w-full h-32 object-cover rounded"
+                          className="w-full h-full object-cover rounded"
                         />
                       </div>
                     )}
