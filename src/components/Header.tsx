@@ -55,7 +55,7 @@ export function Header({ children }: Props) {
   }
 
   return (
-    <header className="bg-blue-600 text-white shadow-md">
+    <header className="bg-gradient-to-b from-blue-600 to-white text-gray-700 py-6 px-4 sm:px-6 lg:px-8">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         {/* Logo e Nome do Portal */}
         <Link href="/" className="flex items-center gap-3">
