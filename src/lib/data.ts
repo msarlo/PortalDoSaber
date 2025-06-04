@@ -4,20 +4,21 @@ export interface Curso {
   image: string;
   slug: string;
   description?: string;
-  role: 'Saude' | 'Comum';  // Novo campo para controlar o acesso
+  role: "Saude" | "Comum"; // Novo campo para controlar o acesso
 }
 
 export async function getListarCursos(): Promise<Curso[]> {
   await new Promise((resolve) => setTimeout(resolve, 1000));
-  
+
   return [
     {
       id: 1,
       title: "Sistema PRONTO",
       image: "/assets/images/LogoProntoSemBG.png",
       slug: "pronto",
-      description: "Aprenda os fundamentos do sistema e suas principais funcionalidades.",
-      role: "Saude"  
+      description:
+        "Aprenda os fundamentos do sistema e suas principais funcionalidades.",
+      role: "Saude",
     },
     {
       id: 2,
@@ -25,7 +26,7 @@ export async function getListarCursos(): Promise<Curso[]> {
       image: "/assets/images/GLPI.webp",
       slug: "glpi",
       description: "Domine as ferramentas essenciais para gestão de chamados.",
-      role: "Comum"  
+      role: "Comum",
     },
     {
       id: 3,
@@ -33,13 +34,14 @@ export async function getListarCursos(): Promise<Curso[]> {
       image: "/assets/images/umdoc.webp",
       slug: "umdoc",
       description: "Gerencie documentos e processos com este sistema completo.",
-      role: "Comum"  
-    }
+      role: "Comum",
+    },
   ];
 }
 
-
-export async function getCursoPorSlug(slug: string): Promise<Curso | undefined> {
+export async function getCursoPorSlug(
+  slug: string
+): Promise<Curso | undefined> {
   const cursos = await getListarCursos();
-  return cursos.find(curso => curso.slug === slug);
+  return cursos.find((curso) => curso.slug === slug);
 }
