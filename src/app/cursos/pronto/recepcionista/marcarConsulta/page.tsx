@@ -1,9 +1,14 @@
+import InteractionButtons from "@/components/InteractionButtons";
+import Image from "next/image";
 import React from "react";
 
-export default function CadastrarUsuarioPage() {
+export default function MarcarConsultaPage() {
     return (
-        <main style={{ padding: "2rem" }}>
+        <main>
             <h1>Tutorial aqui</h1>
+            <p>Em breve, um tutorial completo sobre como marcar uma consulta.</p>
+
+            <InteractionButtons initialLikes={0} initialDislikes={0} />
         </main>
     );
 }

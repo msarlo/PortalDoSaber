@@ -8,7 +8,7 @@ import InteractionButtons from "@/components/InteractionButtons";
 
 export default function CadastrarUsuarioPage() {
   return (
-    <main style={{ padding: "2rem" }}>
+    <main>
       <Image src={Passo1} alt="Primeiro Passo" />
       <Image src={Passo2} alt="Segundo Passo" />
       <Image src={Passo3} alt="Terceiro Passo" />
