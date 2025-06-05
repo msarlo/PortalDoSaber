@@ -1,9 +1,12 @@
+import InteractionButtons from "@/components/InteractionButtons";
 import React from "react";
 
-export default function CadastrarUsuarioPage() {
+export default function FilaDeAtendimentoPage() {
     return (
-        <main style={{ padding: "2rem" }}>
-            <h1>Tutorial aqui</h1>
+        <main>
+            <img src="/assets/img/filaAtendimento36.png" alt="Primeiro Passo Fila de Atendimento" />
+            <img src="/assets/img/filaAtendimento37.png" alt="Segundo Passo Fila de Atendimento" />
+            <InteractionButtons/>
         </main>
     );
 }

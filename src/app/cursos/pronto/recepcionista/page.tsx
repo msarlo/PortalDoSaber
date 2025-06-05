@@ -1,18 +1,16 @@
-import React from 'react';
-import { Banner } from '@/components/Banner'; 
+import { Banner } from "@/components/Banner";
 import { Container } from '@/components/Container';
 import { tutoriaisProntoRecepicionista,Tutorial } from '@/lib/prontoData';
-import logoProntoBanner from '/public/assets/images/LogoProntoSemBG.png'; // Importe a imagem
+import logoProntoBanner from '/public/assets/images/LogoProntoSemBG.png';
 
-export default function CursosProntoPage() {
+export default function HomePage() {
   return (
     <main className="min-h-screen bg-gray-100">
-      <Banner 
-        title={logoProntoBanner} 
-        descricao="Nossa plataforma foi criada para ajudar profissionais a navegar por processos e ações de forma simples e eficiente. Explore a partir do seu cargo e encontre o que você precisa!"
-      />
+      <Banner
+      title={logoProntoBanner}
+        descricao="Tutoriais do Pronto para Recepcionistas"/>
 
-      {/* Barra de Pequisa COMPONENTIZAR DEPOIS*/}
+       {/* Barra de Pequisa COMPONENTIZAR DEPOIS*/}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-8 flex justify-center">
           <input

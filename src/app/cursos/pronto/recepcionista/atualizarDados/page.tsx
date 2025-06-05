@@ -1,9 +1,12 @@
+import InteractionButtons from "@/components/InteractionButtons";
 import React from "react";
 
-export default function CadastrarUsuarioPage() {
+export default function AtualizarDadosPage() {
     return (
-        <main style={{ padding: "2rem" }}>
-            <h1>Tutorial aqui</h1>
+        <main>
+            <img src="/assets/img/AtualizarCadastro24.png" alt="Primeiro Passo Atualizar Dados" />
+            <img src="/assets/img/AtualizarCadastro25.png" alt="Segundo Passo Atualizar Dados" />
+            <InteractionButtons initialLikes={0} initialDislikes={0} />
         </main>
     );
 }

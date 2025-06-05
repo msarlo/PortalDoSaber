@@ -1,9 +1,14 @@
+"use client";
 import React from "react";
+import InteractionButtons from "@/components/InteractionButtons";
 
 export default function CadastrarUsuarioPage() {
-    return (
-        <main style={{ padding: "2rem" }}>
-            <h1>Tutorial aqui</h1>
-        </main>
-    );
+  return (
+    <main>
+      <img src="/assets/img/CadastrUsuario21.png" alt="Primeiro Passo" />
+      <img src="/assets/img/CadastrUsuario22.png" alt="Segundo Passo" />
+      <img src="/assets/img/CadastrUsuario23.png" alt="Terceiro Passo" />
+      <InteractionButtons initialLikes={0} initialDislikes={0} />
+    </main>
+  );
 }
