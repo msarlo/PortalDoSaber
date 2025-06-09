@@ -1,8 +1,8 @@
-"use client"
-import React, { useEffect, useState } from 'react';
-import { Banner } from '@/components/Banner';
-import { LinkButton } from '@/components/LinkButton';
-import { getListarCursos, type Curso } from '@/lib/data';
+"use client";
+import React, { useEffect, useState } from "react";
+import { Banner } from "@/components/Banner";
+import { LinkButton } from "@/components/LinkButton";
+import { getListarCursos, type Curso } from "@/lib/data";
 
 export default function HomePage() {
   const [mainCourses, setMainCourses] = useState<Curso[]>([]);
@@ -26,25 +26,24 @@ export default function HomePage() {
 
   return (
     <main className="min-h-screen bg-gray-50">
-      
       {/* seção boas vindas */}
-      <Banner title="Bem-vindo ao Portal do Saber!"
+      <Banner
+        title="Bem-vindo ao Portal Saber!"
         descricao="Nossa plataforma foi criada para ajudar profissionais a navegar por processos e ações
             de forma simples e eficiente. Explore nossos tutoriais e encontre o que você precisa!"
       />
-      
+
       <section className="container mx-auto py-12 px-4">
         <div className="grid gap-8">
           {/* Main Courses Section */}
           <div className="bg-gradient-to-br from-blue-400 to-white p-8 rounded-lg shadow-md">
             <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-bold text-blue-800">Principais Cursos</h2>
-              <LinkButton
-                href='/cursos'
-                label='Todos os Cursos'
-              />
+              <h2 className="text-2xl font-bold text-blue-800">
+                Principais Cursos
+              </h2>
+              <LinkButton href="/cursos" label="Todos os Cursos" />
             </div>
-            
+
             {/* Loading state */}
             {isLoading ? (
               <div className="flex justify-center items-center py-8">
@@ -54,19 +53,22 @@ export default function HomePage() {
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {mainCourses.map((course) => (
-                  <div 
-                    key={course.id} 
-                    className="p-4 border rounded hover:bg-gray-50 transition-colors cursor-pointer"
-                    onClick={() => window.location.href = `/cursos/${course.slug}`}
+                  <div
+                    key={course.id}
+                    className="p-4 border rounded transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg cursor-pointer"
+                    onClick={() =>
+                      (window.location.href = `/cursos/${course.slug}`)
+                    }
                   >
-                    <h3 className="font-semibold text-lg text-gray-800">{course.title}</h3>
-                    <p className="text-gray-600">{course.description}</p>
+                    <h3 className="font-semibold text-lg text-gray-800">
+                      {course.title}
+                    </h3>
                     {course.image && (
-                      <div className="mt-auto flex justify-center items-center">
-                        <img 
-                          src={course.image} 
+                      <div className="flex justify-center items-center h-48 overflow-hidden">
+                        <img
+                          src={course.image}
                           alt={course.title}
-                          className="w-full h-full object-cover rounded"
+                          className="w-2x1 h-2x1 object-contain rounded transition-transform duration-300 ease-in-out"
                         />
                       </div>
                     )}
@@ -78,11 +80,10 @@ export default function HomePage() {
             {/* Se não houver cursos */}
             {!isLoading && mainCourses.length === 0 && (
               <div className="text-center py-8">
-                <p className="text-gray-600">Nenhum curso disponível no momento.</p>
-                <LinkButton
-                  href='/cursos'
-                  label='Explorar Todos os Cursos'
-                />
+                <p className="text-gray-600">
+                  Nenhum curso disponível no momento.
+                </p>
+                <LinkButton href="/cursos" label="Explorar Todos os Cursos" />
               </div>
             )}
           </div>

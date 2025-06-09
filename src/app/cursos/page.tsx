@@ -110,7 +110,7 @@ export default function CursosPage() {
 
   return (
     <main className="min-h-screen bg-gray-50">
-      <Banner title="Bem-vindo ao Portal do Saber!"
+      <Banner title="Bem-vindo ao Portal Saber!"
         descricao="Nossa plataforma foi criada para ajudar profissionais a navegar por processos e ações de forma simples e eficiente. Explore nossos tutoriais e encontre o que você precisa!"
       />
       
