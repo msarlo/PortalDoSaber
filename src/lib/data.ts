@@ -23,7 +23,7 @@ export async function getListarCursos(): Promise<Curso[]> {
     {
       id: 2,
       title: "GLPI",
-      image: "/assets/images/GLPI.webp",
+      image: "/assets/images/glpi_logo2.png",
       slug: "glpi",
       description: "Domine as ferramentas essenciais para gestão de chamados.",
       role: "Comum",
