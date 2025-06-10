@@ -122,7 +122,9 @@ export function Header({ children }: Props) {
           ) : (
             <>
               <LinkButton href="/cadastro" label="Cadastro" />
-              <LinkButton href="/login" label="Login" />
+              <Link href="/login" 
+              onClick ={() => setIsDropdownOpen(false)}
+              />
             </>
           )}
         </nav>
