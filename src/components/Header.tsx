@@ -122,7 +122,7 @@ export function Header({ children }: Props) {
           ) : (
             <>
               <LinkButton href="/cadastro" label="Cadastro" />
-              <LinkButton href="/login" label="Login" />
+              <LinkButton href="/login" label="login" />
             </>
           )}
         </nav>
