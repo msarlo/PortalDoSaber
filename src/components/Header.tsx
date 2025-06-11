@@ -1,10 +1,10 @@
-"use client"; 
+"use client";
 
 import React, { useState, useEffect, useRef, ReactNode } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useAuth } from '@/contexts/AuthContext'; 
-import { LinkButton } from './LinkButton'; 
+import { useAuth } from '@/contexts/AuthContext';
+import { LinkButton } from './LinkButton';
 
 // Um ícone simples de usuário como placeholder
 const UserIcon = ({ className }: { className?: string }) => (
@@ -41,7 +41,7 @@ export function Header({ children }: Props) {
   if (isLoading) {
     // Pode mostrar um loader menor ou nada enquanto o auth carrega
     return (
-      <header className="bg-blue-600 text-white shadow-md">
+      <header className="w-full bg-blue-600 text-white shadow-md">
         <div className="container mx-auto px-4 py-3 flex justify-between items-center">
           {/* Placeholder para logo e texto durante o carregamento */}
           <div className="flex items-center gap-2">
@@ -55,18 +55,20 @@ export function Header({ children }: Props) {
   }
 
   return (
-    <header className="bg-gradient-to-b from-blue-600 to-white text-gray-700 py-6 px-4 sm:px-6 lg:px-8">
+    <header className="w-full bg-gradient-to-b from-blue-600 to-white text-gray-700 py-6 px-4 sm:px-6 lg:px-8">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         {/* Logo e Nome do Portal */}
-        <Link href="/" className="flex items-center gap-3">
-          <Image 
-            src="/assets/images/logoPrefeitura.png" 
-            alt="Logo Prefeitura" 
-            width={300} 
-            height={100} 
-             
-          />
-          <span className="text-2xl font-bold"> {/* Mantido o span para o texto */}
+        <Link href="/" className="flex items-center md:gap-2">
+          <div className="flex w-50 md:w-100">
+            <Image
+              src="/assets/images/logoPrefeitura.png"
+              alt="Logo Prefeitura"
+              width={300}
+              height={100}
+              layout="responsive"
+            />
+          </div>
+          <span className="text-xl w-10 md:w-full md:text-2xl font-bold ml-2"> {/* Mantido o span para o texto */}
             Portal Saber
           </span>
         </Link>
@@ -77,9 +79,9 @@ export function Header({ children }: Props) {
             {children}
           </nav>
         )}
-        
+
         {/* Authentication Status */}
-        <nav className="flex gap-4 items-center">
+        <nav className="flex md:gap-4 items-center">
           {isAuthenticated && user ? (
             <div className="relative" ref={dropdownRef}>
               <button
@@ -121,11 +123,42 @@ export function Header({ children }: Props) {
             </div>
           ) : (
             <>
-              <LinkButton href="/cadastro" label="Cadastro" />
-              <LinkButton href="/login" label="Login" />
+              <div className='md:hidden relative' ref={dropdownRef}>
+                <button
+                  onClick={toggleDropdown}
+                  className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 md:hidden"
+                  aria-label="Menu do usuário">
+                  <UserIcon className="w-6 h-6 text-white md:hidden" />
+                </button>
+                {isDropdownOpen && (
+                  <div>
+                    <div className="absolute right-0 mt-2 w-30 bg-white rounded-md shadow-lg py-1 z-50 text-gray-700">
+                      <Link
+                        href="/cadastro"
+                        className="block px-4 py-2 text-sm hover:bg-gray-100 font-bold"
+                        onClick={() => setIsDropdownOpen(false)}
+                      >
+                        Cadastro
+                      </Link>
+                      <Link
+                        href="/login"
+                        className="block px-4 py-2 text-sm hover:bg-gray-100"
+                        onClick={() => setIsDropdownOpen(false)}
+                      >
+                        Entrar
+                      </Link>
+                    </div>
+                  </div>
+                )}
+              </div>
+              <div className='hidden md:flex w-46 justify-between'>
+                <LinkButton href="/cadastro" label="Cadastro" />
+                <LinkButton href="/login" label="Login" />
+              </div>
             </>
           )}
         </nav>
+
       </div>
     </header>
   );
