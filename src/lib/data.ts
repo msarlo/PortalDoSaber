@@ -4,7 +4,7 @@ export interface Curso {
   image: string;
   slug: string;
   description?: string;
-  role: "Saude" | "Comum"; // Novo campo para controlar o acesso
+  role: "Saude" | "SUS"; // Novo campo para controlar o acesso
 }
 
 export async function getListarCursos(): Promise<Curso[]> {
@@ -23,10 +23,10 @@ export async function getListarCursos(): Promise<Curso[]> {
     {
       id: 2,
       title: "GLPI",
-      image: "/assets/images/GLPI.webp",
+      image: "/assets/images/glpi_logo2.png",
       slug: "glpi",
       description: "Domine as ferramentas essenciais para gestão de chamados.",
-      role: "Comum",
+      role: "SUS",
     },
     {
       id: 3,
@@ -34,7 +34,7 @@ export async function getListarCursos(): Promise<Curso[]> {
       image: "/assets/images/umdoc.webp",
       slug: "umdoc",
       description: "Gerencie documentos e processos com este sistema completo.",
-      role: "Comum",
+      role: "SUS",
     },
   ];
 }

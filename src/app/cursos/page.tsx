@@ -1,21 +1,21 @@
 "use client";
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
-import { LinkButton } from '@/components/LinkButton';
-import { Container } from '@/components/Container';
-import { getListarCursos, Curso } from '@/lib/data';
-import { SearchBar } from '@/components/SearchBar';
-import { Banner } from '@/components/Banner';
-import { useRouter } from 'next/navigation';
+import { LinkButton } from "@/components/LinkButton";
+import { Container } from "@/components/Container";
+import { getListarCursos, Curso } from "@/lib/data";
+import { SearchBar } from "@/components/SearchBar";
+import { Banner } from "@/components/Banner";
+import { useRouter } from "next/navigation";
 
 interface StoredUserData {
   id: string;
   name: string;
   email: string;
-  role: 'SAUDE' | 'COMUM' | 'ADMIN'; 
+  role: "SAUDE" | "SUS" | "ADMIN";
 }
 
-type ProfileRole = 'SAUDE' | 'COMUM';
+type ProfileRole = "SAUDE" | "SUS";
 
 export default function CursosPage() {
   const router = useRouter();
@@ -27,19 +27,19 @@ export default function CursosPage() {
   // Removido authenticatedUserRole pois o botão "Mudar Perfil" será sempre visível se selectedRole existir
 
   useEffect(() => {
-    const token = localStorage.getItem('authToken');
-    const storedUserJson = localStorage.getItem('userData');
+    const token = localStorage.getItem("authToken");
+    const storedUserJson = localStorage.getItem("userData");
     let userRoleFromAuth: ProfileRole | null = null;
 
     if (token && storedUserJson) {
       try {
         const storedUser: StoredUserData = JSON.parse(storedUserJson);
-        if (storedUser.role === 'SAUDE') {
-          userRoleFromAuth = 'SAUDE';
-        } else if (storedUser.role === 'COMUM') {
-          userRoleFromAuth = 'COMUM';
+        if (storedUser.role === "SAUDE") {
+          userRoleFromAuth = "SAUDE";
+        } else if (storedUser.role === "SUS") {
+          userRoleFromAuth = "SUS";
         }
-        setSelectedRole(userRoleFromAuth); 
+        setSelectedRole(userRoleFromAuth);
       } catch (e) {
         console.error("Erro ao parsear dados do usuário do localStorage:", e);
       }
@@ -67,8 +67,10 @@ export default function CursosPage() {
 
   useEffect(() => {
     if (selectedRole && cursos.length > 0) {
-      const filtered = cursos.filter(curso => {
-        const cursoRoleNormalized = curso.role?.toUpperCase() as ProfileRole | undefined;
+      const filtered = cursos.filter((curso) => {
+        const cursoRoleNormalized = curso.role?.toUpperCase() as
+          | ProfileRole
+          | undefined;
         return cursoRoleNormalized === selectedRole;
       });
       setCursosFiltrados(filtered);
@@ -89,12 +91,16 @@ export default function CursosPage() {
 
     const lowerQuery = query.toLowerCase();
     const filtered = cursos.filter((curso) => {
-      const cursoRoleNormalized = curso.role?.toUpperCase() as ProfileRole | undefined;
+      const cursoRoleNormalized = curso.role?.toUpperCase() as
+        | ProfileRole
+        | undefined;
       const roleMatch = cursoRoleNormalized === selectedRole;
-      
-      return roleMatch &&
-             (curso.title.toLowerCase().includes(lowerQuery) ||
-              (curso.slug && curso.slug.toLowerCase().includes(lowerQuery)));
+
+      return (
+        roleMatch &&
+        (curso.title.toLowerCase().includes(lowerQuery) ||
+          (curso.slug && curso.slug.toLowerCase().includes(lowerQuery)))
+      );
     });
     setCursosFiltrados(filtered);
   };
@@ -110,10 +116,11 @@ export default function CursosPage() {
 
   return (
     <main className="min-h-screen bg-gray-50">
-      <Banner title="Bem-vindo ao Portal do Saber!"
+      <Banner
+        title="Bem-vindo ao Portal Saber!"
         descricao="Nossa plataforma foi criada para ajudar profissionais a navegar por processos e ações de forma simples e eficiente. Explore nossos tutoriais e encontre o que você precisa!"
       />
-      
+
       {!selectedRole && !isLoadingCursos && (
         <section className="container mx-auto py-12 px-4">
           <h2 className="text-2xl font-bold mb-6 text-blue-800 text-center">
@@ -121,25 +128,33 @@ export default function CursosPage() {
           </h2>
           <div className="flex flex-col sm:flex-row justify-center gap-8 mt-10">
             <div
-              onClick={() => handleSelectRole('SAUDE')}
+              onClick={() => handleSelectRole("SAUDE")}
               className="bg-white border-2 border-blue-600 hover:bg-blue-50 rounded-xl shadow-lg p-8 text-center cursor-pointer transform transition-transform hover:scale-105 flex-1 max-w-md mx-auto"
             >
               <div className="text-blue-600 text-5xl mb-4">
-                <span>⚕️</span> 
+                <span>⚕️</span>
               </div>
-              <h3 className="text-2xl font-bold text-blue-800 mb-2">Sou Profissional da Saúde</h3>
-              <p className="text-gray-600">Acesse conteúdos específicos para profissionais da área da saúde</p>
+              <h3 className="text-2xl font-bold text-blue-800 mb-2">
+                Sou Profissional da Saúde
+              </h3>
+              <p className="text-gray-600">
+                Acesse conteúdos específicos para profissionais da área da saúde
+              </p>
             </div>
 
             <div
-              onClick={() => handleSelectRole('COMUM')}
+              onClick={() => handleSelectRole("SUS")}
               className="bg-white border-2 border-green-600 hover:bg-green-50 rounded-xl shadow-lg p-8 text-center cursor-pointer transform transition-transform hover:scale-105 flex-1 max-w-md mx-auto"
             >
               <div className="text-green-600 text-5xl mb-4">
                 <span>👤</span>
               </div>
-              <h3 className="text-2xl font-bold text-green-800 mb-2">Sou Usuário Comum</h3>
-              <p className="text-gray-600">Acesse conteúdos para o público geral</p>
+              <h3 className="text-2xl font-bold text-green-800 mb-2">
+                Sou Usuário SUS
+              </h3>
+              <p className="text-gray-600">
+                Acesse conteúdos para o público geral
+              </p>
             </div>
           </div>
         </section>
@@ -149,15 +164,19 @@ export default function CursosPage() {
         <>
           <div className="container mx-auto px-4 mt-8 mb-4">
             <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-              <SearchBar 
-                placeholder={`Pesquisar cursos para ${selectedRole === 'SAUDE' ? 'Profissionais da Saúde' : 'Usuários Comuns'}...`} 
-                onSearch={handleSearch} 
+              <SearchBar
+                placeholder={`Pesquisar cursos para ${
+                  selectedRole === "SAUDE"
+                    ? "Profissionais da Saúde"
+                    : "Usuários Comuns"
+                }...`}
+                onSearch={handleSearch}
               />
               {/* Botão "Mudar perfil" sempre visível quando um perfil está selecionado */}
               <button
                 onClick={() => {
-                    setSelectedRole(null); 
-                    setCursosFiltrados([]); 
+                  setSelectedRole(null);
+                  setCursosFiltrados([]);
                 }}
                 className="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 text-sm whitespace-nowrap"
               >
@@ -168,11 +187,19 @@ export default function CursosPage() {
 
           <section className="container mx-auto py-8 px-4">
             <h2 className="text-2xl font-bold mb-6 text-blue-800">
-              {isLoadingCursos 
-                ? `Carregando cursos para ${selectedRole === 'SAUDE' ? 'Profissionais da Saúde' : 'Usuários Comuns'}...`
+              {isLoadingCursos
+                ? `Carregando cursos para ${
+                    selectedRole === "SAUDE"
+                      ? "Profissionais da Saúde"
+                      : "Usuários Comuns"
+                  }...`
                 : cursosFiltrados.length === 0
                 ? "Nenhum curso encontrado para este perfil."
-                : `Cursos para ${selectedRole === 'SAUDE' ? 'Profissionais da Saúde' : 'Usuários Comuns'}`}
+                : `Cursos para ${
+                    selectedRole === "SAUDE"
+                      ? "Profissionais da Saúde"
+                      : "Usuários Comuns"
+                  }`}
             </h2>
 
             {isLoadingCursos ? (
@@ -191,9 +218,7 @@ export default function CursosPage() {
                   />
                 ))}
               </div>
-            ) : (
-              null
-            )}
+            ) : null}
           </section>
         </>
       )}
