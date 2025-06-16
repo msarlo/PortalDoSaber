@@ -1,7 +1,7 @@
 // // src/types/user.ts
 // export enum Role {
 //   SAUDE = 'SAUDE',
-//   COMUM = 'COMUM',
+//   SUS = 'SUS',
 //   ADMIN = 'ADMIN'
 // }
 

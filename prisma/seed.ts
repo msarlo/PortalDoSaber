@@ -1,56 +1,56 @@
-import { PrismaClient } from '@prisma/client';
-import { hash } from 'bcryptjs';
+import { PrismaClient } from "@prisma/client";
+import { hash } from "bcryptjs";
 
 const prisma = new PrismaClient();
 
 async function main() {
   // Verificar se admin já existe
   const adminExists = await prisma.user.findUnique({
-    where: { email: 'admin@gmail.com' }
+    where: { email: "admin@gmail.com" },
   });
 
   if (!adminExists) {
     // Criar usuário admin
-    const senhaHash = await hash('123456', 12);
-    
+    const senhaHash = await hash("123456", 12);
+
     await prisma.user.create({
       data: {
-        name: 'Administrador',
-        email: 'admin@gmail.com',
+        name: "Administrador",
+        email: "admin@gmail.com",
         senha: senhaHash,
-        role: 'ADMIN'
-      }
+        role: "ADMIN",
+      },
     });
 
-    console.log('Usuário admin criado com sucesso!');
+    console.log("Usuário admin criado com sucesso!");
   } else {
-    console.log('Usuário admin já existe.');
+    console.log("Usuário admin já existe.");
   }
 
   // Criar alguns usuários de teste (opcional)
   const testUsers = [
     {
-      name: 'Dr. Luis Gustavo',
-      email: 'luis@saude.com',
-      senha: await hash('123456', 12),
-      role: 'SAUDE' as const
+      name: "Dr. Luis Gustavo",
+      email: "luis@saude.com",
+      senha: await hash("123456", 12),
+      role: "SAUDE" as const,
     },
     {
-      name: 'Dra. Gabriela Melo',
-      email: 'gabi@saude.com',
-      senha: await hash('123456', 12),
-      role: 'COMUM' as const
-    }
-  ]
+      name: "Dra. Gabriela Melo",
+      email: "gabi@saude.com",
+      senha: await hash("123456", 12),
+      role: "SUS" as const,
+    },
+  ];
 
   for (const user of testUsers) {
     const existingUser = await prisma.user.findUnique({
-      where: { email: user.email }
-    })
+      where: { email: user.email },
+    });
 
     if (!existingUser) {
-      await prisma.user.create({ data: user })
-      console.log(`Usuário criado: ${user.email}`)
+      await prisma.user.create({ data: user });
+      console.log(`Usuário criado: ${user.email}`);
     }
   }
 }
