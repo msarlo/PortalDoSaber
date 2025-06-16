@@ -102,13 +102,7 @@ export function Header({ children }: Props) {
                     <p className="text-sm font-medium truncate">{user.name}</p>
                     <p className="text-xs text-gray-500 truncate">{user.email}</p>
                   </div>
-                  <Link
-                    href="/perfil/editar" // Crie esta página depois
-                    className="block px-4 py-2 text-sm hover:bg-gray-100"
-                    onClick={() => setIsDropdownOpen(false)}
-                  >
-                    Editar Perfil
-                  </Link>
+                
                   <button
                     onClick={() => {
                       logout();
