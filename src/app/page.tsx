@@ -51,11 +51,11 @@ export default function HomePage() {
                 <span className="ml-3 text-gray-600">Carregando cursos...</span>
               </div>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 group">
                 {mainCourses.map((course) => (
                   <div
                     key={course.id}
-                    className="p-4 border rounded transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg cursor-pointer"
+                    className="p-4 bg-white rounded-lg shadow-md transition-all duration-300 cursor-pointer group-hover:blur-sm group-hover:opacity-60 hover:!blur-none hover:!opacity-100 hover:shadow-xl hover:shadow-blue-600/80 hover:-translate-y-1 hover:scale-105"
                     onClick={() =>
                       (window.location.href = `/cursos/${course.slug}`)
                     }
