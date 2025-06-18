@@ -7,14 +7,14 @@ interface BannerProps {
 
 export function Banner({ title, descricao }: BannerProps) {
     return (
-        <section className="bg-gradient-to-b from-white to-blue-700 text-gray-800 py-16 
-        rounded-lg shadow-[4px_4px_10px_0px_rgba(0,0,0,0.1)] mx-4 my-8 transform hover:scale-[1.01]
+        <section className="bg-custom-blue py-16 
+         shadow-[4px_4px_10px_0px_rgba(0,0,0,0.1)] mx-auto my-8 transform hover:scale-[1.01]
         transition-all duration-300">
             <div className="container mx-auto px-4">
                 {typeof title === 'string' ? (
                     <div className="text-center">
-                        <h1 className="text-5xl font-bold mb-4 text-black">{title}</h1>
-                        {descricao && <p className="text-xl max-w-3xl mx-auto text-gray-900">{descricao}</p>}
+                        <h1 className="text-5xl font-bold mb-4 text-gray-200">{title}</h1>
+                        {descricao && <p className="text-xl max-w-3xl mx-auto text-gray-200">{descricao}</p>}
                     </div>
                 ) : (
                     <div className="flex flex-col md:flex-row justify-center items-center gap-8">
@@ -27,7 +27,7 @@ export function Banner({ title, descricao }: BannerProps) {
                                 height={200}
                             />
                         </div>
-                        {descricao && <p className="text-xl text-gray-900 max-w-md">{descricao}</p>}
+                        {descricao && <p className="text-xl text-white max-w-md">{descricao}</p>}
                     </div>
                 )}
             </div>

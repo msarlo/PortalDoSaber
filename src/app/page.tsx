@@ -36,7 +36,7 @@ export default function HomePage() {
       <section className="container mx-auto py-12 px-4">
         <div className="grid gap-8">
           {/* Main Courses Section */}
-          <div className="bg-gradient-to-br from-blue-400 to-white p-8 rounded-lg shadow-md">
+          <div className="p-8 rounded-lg shadow-md">
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-2xl font-bold text-blue-800">
                 Principais Cursos
