@@ -55,20 +55,20 @@ export function Header({ children }: Props) {
   }
 
   return (
-    <header className="w-full bg-gradient-to-b from-blue-600 to-white text-gray-700 py-6 px-4 sm:px-6 lg:px-8">
+    <header className="fixed top-0 left-0 w-full bg-custom-blue text-gray-700 py-6 px-4 sm:px-6 lg:px-8 z-50 shadow-md">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         {/* Logo e Nome do Portal */}
         <Link href="/" className="flex items-center md:gap-2">
           <div className="flex w-50 md:w-100">
             <Image
-              src="/assets/images/logoPrefeitura.png"
+              src="/assets/images/logoBranco.png"
               alt="Logo Prefeitura"
               width={300}
               height={100}
               layout="responsive"
             />
           </div>
-          <span className="text-xl w-10 md:w-full md:text-2xl font-bold ml-2"> {/* Mantido o span para o texto */}
+          <span className="text-xl w-10 md:w-full md:text-2xl font-bold ml-2 text-white"> {/* Mantido o span para o texto */}
             Portal Saber
           </span>
         </Link>
@@ -102,13 +102,7 @@ export function Header({ children }: Props) {
                     <p className="text-sm font-medium truncate">{user.name}</p>
                     <p className="text-xs text-gray-500 truncate">{user.email}</p>
                   </div>
-                  <Link
-                    href="/perfil/editar" // Crie esta página depois
-                    className="block px-4 py-2 text-sm hover:bg-gray-100"
-                    onClick={() => setIsDropdownOpen(false)}
-                  >
-                    Editar Perfil
-                  </Link>
+                
                   <button
                     onClick={() => {
                       logout();

@@ -1,0 +1,7 @@
+.bg-gradient-custom {
+  background: linear-gradient(to bottom, white 0%, white 0%, #1975CC 100%);
+}
+
+.bg-custom-blue {
+    background:#10508b;
+}
