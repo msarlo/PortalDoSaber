@@ -22,7 +22,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <AuthProvider>
           <Header /> {/* Adicionar Header aqui */}
-            <main className="pt-24">{children}</main> {/* Envolver children com <main> ou div se necessário */}
+            <main className="pt-25">{children}</main> {/* Envolver children com <main> ou div se necessário */}
           {/* Você pode adicionar um Footer aqui também se tiver um */}
         <Footer/>
         </AuthProvider>

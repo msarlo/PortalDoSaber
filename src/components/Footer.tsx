@@ -5,13 +5,13 @@ import { FaXTwitter } from 'react-icons/fa6'; // Ícone mais recente para X/Twit
 
 export default function Footer() {
   return (
-    <footer className="bg-gradient-to-t from-blue-600 to-white text-gray-700 py-6 px-4 sm:px-6 lg:px-8">
+    <footer className="bg-custom-blue py-6 px-4 sm:px-6 lg:px-8">
       <div className="container mx-auto flex flex-col sm:flex-row justify-between items-center">
         {/* Informações da Prefeitura */}
         <div className="text-sm mb-6 sm:mb-0 text-center sm:text-left">
-          <h1 className="font-semibold text-blue-800">Prefeitura de Juiz de Fora</h1>
-          <p className="text-gray-600">Av. Brasil, 2001 | Centro - Juiz de Fora/MG - CEP: 36060-010</p>
-          <p className="text-gray-500 mt-1">
+          <h1 className="font-semibold text-blue-300 ">Prefeitura de Juiz de Fora</h1>
+          <p className="text-gray-200">Av. Brasil, 2001 | Centro - Juiz de Fora/MG - CEP: 36060-010</p>
+          <p className="text-gray-200 mt-1">
             © {new Date().getFullYear()} Todos os direitos reservados. {/* Site versão X.X (se aplicável) */}
           </p>
         </div>

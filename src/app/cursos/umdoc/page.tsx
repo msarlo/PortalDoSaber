@@ -153,7 +153,7 @@ export default function DocumentacaoUmdocPage() {
   const imageClass = "rounded-md shadow-lg border"; 
 
   return (
-    <div className="flex flex-1">
+    <div className="flex flex-1 pt-15">
       <SideBar title="Treinamento 1Doc" items={umdocSidebarData} />
 
       <article className="flex-1 p-6 md:p-8 lg:p-10 ml-0 md:ml-64 lg:ml-72 overflow-y-auto">

@@ -39,7 +39,7 @@ export default function DocumentacaoGLPIPage() {
   const subListItemClass = "ml-4 list-disc list-inside"; 
 
   return (
-    <div className="flex flex-1">
+    <div className="flex flex-1 pt-15">
       <SideBar title="Capítulos GLPI" items={glpiSidebarData} />
       
       <article className="flex-1 p-4 md:pl-80 overflow-y-auto"> 
